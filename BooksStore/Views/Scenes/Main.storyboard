@@ -52,14 +52,14 @@
                                                             <constraint firstAttribute="height" constant="35" id="fFK-3J-50e"/>
                                                         </constraints>
                                                         <segments>
-                                                            <segment title="First"/>
-                                                            <segment title="Second"/>
-                                                            <segment title="Third"/>
-                                                            <segment title="Four"/>
+                                                            <segment title="Fiction"/>
+                                                            <segment title="Romance"/>
+                                                            <segment title="Sci-Fi"/>
+                                                            <segment title="Crime"/>
                                                         </segments>
                                                     </segmentedControl>
                                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WRT-hM-xGn">
-                                                        <rect key="frame" x="0.0" y="122" width="466" height="726"/>
+                                                        <rect key="frame" x="0.0" y="40" width="428" height="726"/>
                                                     </containerView>
                                                 </subviews>
                                                 <constraints>
