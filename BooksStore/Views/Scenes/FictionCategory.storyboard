@@ -44,9 +44,9 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="366" height="160"/>
                                                                     <subviews>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="87D-GE-mU3">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="110" height="160"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="123.5" height="160"/>
                                                                         </imageView>
-                                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="9xi-3P-eNv" userLabel="Inner Stack View">
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="9xi-3P-eNv" userLabel="Inner Stack View">
                                                                             <rect key="frame" x="146.5" y="0.0" width="219.5" height="160"/>
                                                                             <subviews>
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ZlJ-AB-4hu" userLabel="Labels Stack View">
@@ -70,22 +70,22 @@
                                                                                         <constraint firstItem="rkv-Yn-xKf" firstAttribute="width" secondItem="ZlJ-AB-4hu" secondAttribute="width" id="Z7T-e5-kEh"/>
                                                                                     </constraints>
                                                                                 </stackView>
-                                                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="325-6W-N5o" userLabel="Slider Stack View">
-                                                                                    <rect key="frame" x="0.0" y="56" width="219.5" height="104"/>
+                                                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="325-6W-N5o" userLabel="Slider Stack View">
+                                                                                    <rect key="frame" x="0.0" y="53" width="219.5" height="107"/>
                                                                                     <subviews>
-                                                                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="O6E-Tb-Gnd">
-                                                                                            <rect key="frame" x="-2" y="74" width="157.5" height="31"/>
-                                                                                        </slider>
-                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfE-E8-43a">
-                                                                                            <rect key="frame" x="158" y="83.5" width="61.5" height="20.5"/>
+                                                                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eRJ-6H-NIx">
+                                                                                            <rect key="frame" x="0.0" y="51.5" width="153.5" height="4"/>
+                                                                                        </progressView>
+                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfE-E8-43a">
+                                                                                            <rect key="frame" x="153.5" y="43.5" width="66" height="20.5"/>
                                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                             <nil key="textColor"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                     </subviews>
                                                                                     <constraints>
-                                                                                        <constraint firstItem="sfE-E8-43a" firstAttribute="width" secondItem="O6E-Tb-Gnd" secondAttribute="width" multiplier="0.4" id="4XP-dA-T5s"/>
-                                                                                        <constraint firstItem="O6E-Tb-Gnd" firstAttribute="width" secondItem="325-6W-N5o" secondAttribute="width" multiplier="0.7" id="Cc2-FK-fRq"/>
+                                                                                        <constraint firstItem="eRJ-6H-NIx" firstAttribute="width" secondItem="325-6W-N5o" secondAttribute="width" multiplier="0.7" id="Vra-7R-B7o"/>
+                                                                                        <constraint firstItem="sfE-E8-43a" firstAttribute="width" secondItem="325-6W-N5o" secondAttribute="width" multiplier="0.3" id="cIP-wO-piw"/>
                                                                                     </constraints>
                                                                                 </stackView>
                                                                             </subviews>
@@ -94,7 +94,7 @@
                                                                     <constraints>
                                                                         <constraint firstItem="87D-GE-mU3" firstAttribute="height" secondItem="J8Y-wO-0SY" secondAttribute="height" id="9pa-CO-eQg"/>
                                                                         <constraint firstItem="9xi-3P-eNv" firstAttribute="width" secondItem="J8Y-wO-0SY" secondAttribute="width" multiplier="0.6" id="IBu-Gd-4bf"/>
-                                                                        <constraint firstItem="87D-GE-mU3" firstAttribute="width" secondItem="J8Y-wO-0SY" secondAttribute="width" multiplier="0.3" id="RCE-IN-qSo"/>
+                                                                        <constraint firstItem="87D-GE-mU3" firstAttribute="width" secondItem="J8Y-wO-0SY" secondAttribute="width" multiplier="0.337" id="RCE-IN-qSo"/>
                                                                     </constraints>
                                                                 </stackView>
                                                             </subviews>

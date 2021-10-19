@@ -57,6 +57,9 @@
                                                             <segment title="Sci-Fi"/>
                                                             <segment title="Crime"/>
                                                         </segments>
+                                                        <connections>
+                                                            <action selector="didSegmentChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="zzd-Tb-91F"/>
+                                                        </connections>
                                                     </segmentedControl>
                                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WRT-hM-xGn">
                                                         <rect key="frame" x="0.0" y="40" width="428" height="726"/>
@@ -104,10 +107,14 @@
                             <constraint firstItem="9fN-3c-sVM" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="bPm-c5-4Z6"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="containerView" destination="WRT-hM-xGn" id="53J-hA-lL8"/>
+                        <outlet property="segmentedControl" destination="5Dg-y8-zUz" id="1KZ-M9-bX0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2764" y="-370"/>
+            <point key="canvasLocation" x="-2766" y="-511"/>
         </scene>
     </scenes>
     <resources>

@@ -15,6 +15,8 @@
 		494604C1271EDD0E0024BE51 /* RomanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494604C0271EDD0E0024BE51 /* RomanceViewController.swift */; };
 		494604C3271EDD290024BE51 /* Sci-FiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494604C2271EDD290024BE51 /* Sci-FiViewController.swift */; };
 		494604C5271EDD390024BE51 /* CrimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494604C4271EDD390024BE51 /* CrimeViewController.swift */; };
+		494604C8271EE4A10024BE51 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494604C7271EE4A10024BE51 /* Constants.swift */; };
+		494604CA271F1FBF0024BE51 /* CustomBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494604C9271F1FBF0024BE51 /* CustomBookCell.swift */; };
 		496B8E29271C06EB00871DB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496B8E28271C06EB00871DB9 /* AppDelegate.swift */; };
 		496B8E2B271C06EB00871DB9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496B8E2A271C06EB00871DB9 /* SceneDelegate.swift */; };
 		496B8E2D271C06EB00871DB9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496B8E2C271C06EB00871DB9 /* ViewController.swift */; };
@@ -32,6 +34,8 @@
 		494604C0271EDD0E0024BE51 /* RomanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RomanceViewController.swift; sourceTree = "<group>"; };
 		494604C2271EDD290024BE51 /* Sci-FiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sci-FiViewController.swift"; sourceTree = "<group>"; };
 		494604C4271EDD390024BE51 /* CrimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrimeViewController.swift; sourceTree = "<group>"; };
+		494604C7271EE4A10024BE51 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		494604C9271F1FBF0024BE51 /* CustomBookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBookCell.swift; sourceTree = "<group>"; };
 		496B8E25271C06EB00871DB9 /* BooksStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BooksStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		496B8E28271C06EB00871DB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		496B8E2A271C06EB00871DB9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +57,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		494604C6271EE4800024BE51 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				494604C7271EE4A10024BE51 /* Constants.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		496B8E1C271C06EB00871DB9 = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +91,7 @@
 				49F70F7B271CC33600314A99 /* Models */,
 				49F70F7C271CC33F00314A99 /* Views */,
 				49F70F7D271CC34600314A99 /* Controllers */,
+				494604C6271EE4800024BE51 /* Helpers */,
 			);
 			path = BooksStore;
 			sourceTree = "<group>";
@@ -115,6 +128,7 @@
 				494604C0271EDD0E0024BE51 /* RomanceViewController.swift */,
 				494604C2271EDD290024BE51 /* Sci-FiViewController.swift */,
 				494604C4271EDD390024BE51 /* CrimeViewController.swift */,
+				494604C9271F1FBF0024BE51 /* CustomBookCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -206,12 +220,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				496B8E2D271C06EB00871DB9 /* ViewController.swift in Sources */,
+				494604CA271F1FBF0024BE51 /* CustomBookCell.swift in Sources */,
 				494604BF271EDCFE0024BE51 /* FictionViewController.swift in Sources */,
 				494604C1271EDD0E0024BE51 /* RomanceViewController.swift in Sources */,
 				496B8E29271C06EB00871DB9 /* AppDelegate.swift in Sources */,
 				496B8E2B271C06EB00871DB9 /* SceneDelegate.swift in Sources */,
 				494604C3271EDD290024BE51 /* Sci-FiViewController.swift in Sources */,
 				494604C5271EDD390024BE51 /* CrimeViewController.swift in Sources */,
+				494604C8271EE4A10024BE51 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
