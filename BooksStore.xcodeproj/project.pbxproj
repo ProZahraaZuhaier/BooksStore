@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		493B5BAA271FF8D7007EC11F /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493B5BA9271FF8D7007EC11F /* ErrorHandler.swift */; };
 		494604B7271EC0630024BE51 /* FictionCategory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 494604B6271EC0630024BE51 /* FictionCategory.storyboard */; };
 		494604B9271EC0820024BE51 /* RomanceCategory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 494604B8271EC0820024BE51 /* RomanceCategory.storyboard */; };
 		494604BB271EC0B00024BE51 /* Sci-FiCategory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 494604BA271EC0B00024BE51 /* Sci-FiCategory.storyboard */; };
@@ -17,6 +18,11 @@
 		494604C5271EDD390024BE51 /* CrimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494604C4271EDD390024BE51 /* CrimeViewController.swift */; };
 		494604C8271EE4A10024BE51 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494604C7271EE4A10024BE51 /* Constants.swift */; };
 		494604CA271F1FBF0024BE51 /* CustomBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494604C9271F1FBF0024BE51 /* CustomBookCell.swift */; };
+		494604CC271F3C430024BE51 /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494604CB271F3C430024BE51 /* BookModel.swift */; };
+		494604CE271F400F0024BE51 /* ApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494604CD271F400F0024BE51 /* ApiResponse.swift */; };
+		494604D5271F542E0024BE51 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494604D4271F542E0024BE51 /* NetworkService.swift */; };
+		494604D7271F54540024BE51 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494604D6271F54540024BE51 /* Route.swift */; };
+		494604D9271F54660024BE51 /* Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494604D8271F54660024BE51 /* Method.swift */; };
 		496B8E29271C06EB00871DB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496B8E28271C06EB00871DB9 /* AppDelegate.swift */; };
 		496B8E2B271C06EB00871DB9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496B8E2A271C06EB00871DB9 /* SceneDelegate.swift */; };
 		496B8E2D271C06EB00871DB9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496B8E2C271C06EB00871DB9 /* ViewController.swift */; };
@@ -26,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		493B5BA9271FF8D7007EC11F /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		494604B6271EC0630024BE51 /* FictionCategory.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FictionCategory.storyboard; sourceTree = "<group>"; };
 		494604B8271EC0820024BE51 /* RomanceCategory.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RomanceCategory.storyboard; sourceTree = "<group>"; };
 		494604BA271EC0B00024BE51 /* Sci-FiCategory.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Sci-FiCategory.storyboard"; sourceTree = "<group>"; };
@@ -36,6 +43,11 @@
 		494604C4271EDD390024BE51 /* CrimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrimeViewController.swift; sourceTree = "<group>"; };
 		494604C7271EE4A10024BE51 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		494604C9271F1FBF0024BE51 /* CustomBookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBookCell.swift; sourceTree = "<group>"; };
+		494604CB271F3C430024BE51 /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
+		494604CD271F400F0024BE51 /* ApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponse.swift; sourceTree = "<group>"; };
+		494604D4271F542E0024BE51 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		494604D6271F54540024BE51 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		494604D8271F54660024BE51 /* Method.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Method.swift; sourceTree = "<group>"; };
 		496B8E25271C06EB00871DB9 /* BooksStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BooksStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		496B8E28271C06EB00871DB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		496B8E2A271C06EB00871DB9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +111,11 @@
 		49F70F7A271CC32A00314A99 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				494604D4271F542E0024BE51 /* NetworkService.swift */,
+				494604D6271F54540024BE51 /* Route.swift */,
+				494604D8271F54660024BE51 /* Method.swift */,
+				493B5BA9271FF8D7007EC11F /* ErrorHandler.swift */,
+				494604CD271F400F0024BE51 /* ApiResponse.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -106,6 +123,7 @@
 		49F70F7B271CC33600314A99 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				494604CB271F3C430024BE51 /* BookModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -219,14 +237,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				494604CE271F400F0024BE51 /* ApiResponse.swift in Sources */,
+				494604CC271F3C430024BE51 /* BookModel.swift in Sources */,
 				496B8E2D271C06EB00871DB9 /* ViewController.swift in Sources */,
 				494604CA271F1FBF0024BE51 /* CustomBookCell.swift in Sources */,
+				494604D7271F54540024BE51 /* Route.swift in Sources */,
 				494604BF271EDCFE0024BE51 /* FictionViewController.swift in Sources */,
 				494604C1271EDD0E0024BE51 /* RomanceViewController.swift in Sources */,
 				496B8E29271C06EB00871DB9 /* AppDelegate.swift in Sources */,
 				496B8E2B271C06EB00871DB9 /* SceneDelegate.swift in Sources */,
 				494604C3271EDD290024BE51 /* Sci-FiViewController.swift in Sources */,
 				494604C5271EDD390024BE51 /* CrimeViewController.swift in Sources */,
+				494604D5271F542E0024BE51 /* NetworkService.swift in Sources */,
+				493B5BAA271FF8D7007EC11F /* ErrorHandler.swift in Sources */,
+				494604D9271F54660024BE51 /* Method.swift in Sources */,
 				494604C8271EE4A10024BE51 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     //MARK:- Set Variables and Properties
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var containerView: UIView!
-    
+    var array :[BookModel]?
     
     lazy var fictionViewController:FictionViewController = {
         let storyboard = UIStoryboard(name: "FictionCategory", bundle: Bundle.main)
@@ -49,6 +49,18 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        // just for test networking layer
+        NetworkService.shared.fetchBooks(route: .FictionBooks, method: .get) { result in
+         
+            switch result {
+            
+            case .success(let data):
+                self.array = data
+                print(self.array)
+            case .failure(let error):
+                print(error)
+            }
+        }
         
     }
 
