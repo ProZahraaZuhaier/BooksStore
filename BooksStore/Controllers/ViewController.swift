@@ -13,6 +13,10 @@ class ViewController: UIViewController {
     //MARK:- Set Variables and Properties
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var containerView: UIView!
+    
+    @IBOutlet weak var shadowView: UIView!
+    @IBOutlet weak var cardView: UIView!
+    
     var array :[BookModel]?
     
     lazy var fictionViewController:FictionViewController = {
@@ -49,18 +53,25 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        shadowView.layer.cornerRadius = 10
+        cardView.layer.cornerRadius = 8
+        shadowView.layer.shadowColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 0.5)
+        shadowView.layer.shadowOpacity = 1
+        shadowView.layer.shadowOffset = .zero
+        shadowView.layer.shadowRadius = 8
         // just for test networking layer
-        NetworkService.shared.fetchBooks(route: .FictionBooks, method: .get) { result in
-         
-            switch result {
-            
-            case .success(let data):
-                self.array = data
-                print(self.array)
-            case .failure(let error):
-                print(error)
-            }
-        }
+//        NetworkService.shared.fetchBooks(route: .CrimeBooks, method: .get) { result in
+//
+//            switch result {
+//
+//            case .success(let data):
+//                self.array = data
+//                print(self.array)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
         
     }
 
@@ -124,4 +135,8 @@ class ViewController: UIViewController {
 //AIzaSyAnPJB32xH9U1CKylidXNPfj0s3Ge-UGos
 //https://www.googleapis.com/books/v1/volumes?q=technology+subject&key=AIzaSyAnPJB32xH9U1CKylidXNPfj0s3Ge-UGos&filter=free-ebooks&printType=books
 //https://www.googleapis.com/books/v1/volumes/zyTCAlFPjgYC?key=AIzaSyAnPJB32xH9U1CKylidXNPfj0s3Ge-UGos
+
+
+    
+    
 
