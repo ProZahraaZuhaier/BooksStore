@@ -33,9 +33,9 @@ class CustomBookCell: UICollectionViewCell {
     
     func configureCell (with data: BookModel) {
         self.bookInfo = data
-        bookTitle.text = self.bookInfo!.volumeInfo?.title
-        authorName.text = self.bookInfo!.volumeInfo?.authors?[0]
-        publishedDate.text = self.bookInfo?.volumeInfo?.publishedDate
+        bookTitle.text = self.bookInfo!.volumeInfo?.title  ?? "Unknown title"
+        authorName.text = self.bookInfo!.volumeInfo?.authors?[0] ?? "Unknown author"
+        publishedDate.text = self.bookInfo?.volumeInfo?.publishedDate ?? "Unknown published date"
         
         guard let _ = self.bookInfo!.volumeInfo?.imageLinks?.thumbnail  else {
             print(ErrorHandler.invalidURL)
@@ -49,7 +49,7 @@ class CustomBookCell: UICollectionViewCell {
             URLSession.shared.dataTask(with: imageURL!) { data, response, error in
                 
                 if error == nil && data != nil {
-                    if self.bookInfo?.volumeInfo?.imageLinks?.thumbnail == imageUrlString
+                    if self.bookInfo?.volumeInfo?.imageLinks?.thumbnail == imageUrlString 
                  {   DispatchQueue.main.async {
                         self.bookCoverImage.image = UIImage(data: data!)
                     }

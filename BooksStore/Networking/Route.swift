@@ -11,24 +11,24 @@ enum Route {
   
     static let baseURL = "https://www.googleapis.com/books/v1/volumes?key=AIzaSyAnPJB32xH9U1CKylidXNPfj0s3Ge-UGos&filter=free-ebooks&printType=books&orderBy=newest"
     
-    case FictionBooks
-    case RomanceBooks
-    case Sci_Fi_Books
-    case CrimeBooks
+    case FictionBooksApi
+    case RomanceBooksApi
+    case Sci_Fi_BooksApi
+    case CrimeBooksApi
     
     
     var path: String {
         
         switch self {
      
-        case .FictionBooks:
+        case .FictionBooksApi:
             return "&q=fiction+subject"
-        case .RomanceBooks:
-            return "&q=romance+subject"
-        case .Sci_Fi_Books:
+        case .RomanceBooksApi:
+            return "&q=subject:Love"
+        case .Sci_Fi_BooksApi:
             return "&q=sci-fi+subject"
-        case .CrimeBooks:
-            return "&q=crime+subject"
+        case .CrimeBooksApi:
+            return "&q=subject:Crime"
         }
 }
 }
