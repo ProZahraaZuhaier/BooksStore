@@ -24,17 +24,17 @@
                                         <rect key="frame" x="0.0" y="0.0" width="428" height="848"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5mt-yc-jgU" userLabel="Top Titles Stack View">
-                                                <rect key="frame" x="20" y="50" width="388" height="32"/>
+                                                <rect key="frame" x="20" y="50" width="388" height="39"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Book Store" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNo-PL-6Hs">
-                                                        <rect key="frame" x="0.0" y="0.0" width="388" height="32"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="388" height="39"/>
                                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="35"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oYb-QB-p1q">
-                                                <rect key="frame" x="20" y="102" width="388" height="170"/>
+                                                <rect key="frame" x="20" y="109" width="388" height="170"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U8U-z2-Bqm">
                                                         <rect key="frame" x="20" y="20" width="348" height="130"/>
@@ -79,11 +79,11 @@
                                                     <constraint firstItem="U8U-z2-Bqm" firstAttribute="leading" secondItem="oYb-QB-p1q" secondAttribute="leading" constant="20" id="y2e-QL-8n3"/>
                                                 </constraints>
                                             </view>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="MYz-Sd-dmn" userLabel="Bottom Stack View">
-                                                <rect key="frame" x="0.0" y="302" width="428" height="546"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="MYz-Sd-dmn" userLabel="Bottom Stack View">
+                                                <rect key="frame" x="0.0" y="299" width="428" height="549"/>
                                                 <subviews>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5Dg-y8-zUz" userLabel="Segmented Control">
-                                                        <rect key="frame" x="20" y="0.0" width="388" height="41"/>
+                                                        <rect key="frame" x="20" y="0.0" width="388" height="32"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="3uy-fO-87L"/>
                                                         </constraints>
@@ -98,8 +98,12 @@
                                                             <action selector="didSegmentChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="zzd-Tb-91F"/>
                                                         </connections>
                                                     </segmentedControl>
+                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" id="uY1-3d-5HM">
+                                                        <rect key="frame" x="204" y="33" width="20" height="20"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </activityIndicatorView>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ZlV-OR-Fvm">
-                                                        <rect key="frame" x="0.0" y="60" width="428" height="486"/>
+                                                        <rect key="frame" x="0.0" y="55" width="428" height="494"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cww-uV-uTq">
                                                             <size key="itemSize" width="400" height="220"/>
@@ -139,7 +143,7 @@
                                                                                                                     <nil key="textColor"/>
                                                                                                                     <nil key="highlightedColor"/>
                                                                                                                 </label>
-                                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DMc-X1-UgI">
+                                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="author" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DMc-X1-UgI">
                                                                                                                     <rect key="frame" x="0.0" y="28" width="213.66666666666666" height="18"/>
                                                                                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -242,7 +246,7 @@
                                             <constraint firstItem="oYb-QB-p1q" firstAttribute="top" secondItem="5mt-yc-jgU" secondAttribute="bottom" constant="20" id="Gaj-Cz-PHL"/>
                                             <constraint firstAttribute="bottom" secondItem="MYz-Sd-dmn" secondAttribute="bottom" id="eFp-Uj-vYb"/>
                                             <constraint firstAttribute="trailing" secondItem="oYb-QB-p1q" secondAttribute="trailing" constant="20" id="eLP-xS-dfH"/>
-                                            <constraint firstItem="MYz-Sd-dmn" firstAttribute="top" secondItem="oYb-QB-p1q" secondAttribute="bottom" constant="30" id="j8E-uP-rFl"/>
+                                            <constraint firstItem="MYz-Sd-dmn" firstAttribute="top" secondItem="oYb-QB-p1q" secondAttribute="bottom" constant="20" id="j8E-uP-rFl"/>
                                             <constraint firstAttribute="trailing" secondItem="5mt-yc-jgU" secondAttribute="trailing" constant="20" id="o7a-oH-5Wz"/>
                                             <constraint firstItem="MYz-Sd-dmn" firstAttribute="leading" secondItem="E5R-S1-mHC" secondAttribute="leading" id="oJb-ex-Z2b"/>
                                             <constraint firstItem="5mt-yc-jgU" firstAttribute="top" secondItem="E5R-S1-mHC" secondAttribute="top" constant="50" id="pvh-DB-geQ"/>
@@ -276,6 +280,7 @@
                         <outlet property="cardView" destination="U8U-z2-Bqm" id="J1n-A5-BBq"/>
                         <outlet property="segmentedControl" destination="5Dg-y8-zUz" id="1KZ-M9-bX0"/>
                         <outlet property="shadowView" destination="oYb-QB-p1q" id="blE-WI-LOF"/>
+                        <outlet property="spinner" destination="uY1-3d-5HM" id="FSa-GO-YcU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

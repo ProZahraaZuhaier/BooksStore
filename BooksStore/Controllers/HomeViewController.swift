@@ -13,6 +13,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var bookCollectionView: UICollectionView!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     var BooksInfo = [BookModel]()
     var dataModel = DataModel()
@@ -32,6 +33,10 @@ class HomeViewController: UIViewController {
         
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        spinner.alpha = 1
+        spinner.startAnimating()
+    }
     
     //MARK:- setup UI function
     func setupView(){
@@ -49,25 +54,39 @@ class HomeViewController: UIViewController {
         switch sender.selectedSegmentIndex {
         
         case 0:
-            
+            spinner.alpha = 1
+            spinner.startAnimating()
+            bookCollectionView.alpha = 0
             self.endpoint = .FictionBooksApi
             dataModel.fetchData(for: self.endpoint!)
             
-        case 1:
+           
             
+        case 1:
+            spinner.alpha = 1
+            spinner.startAnimating()
+            bookCollectionView.alpha = 0
             self.endpoint = .RomanceBooksApi
             dataModel.fetchData(for: self.endpoint!)
             
         case 2:
+            spinner.alpha = 1
+            spinner.startAnimating()
+            bookCollectionView.alpha = 0
             self.endpoint = .Sci_Fi_BooksApi
             dataModel.fetchData(for: self.endpoint!)
             
         case 3:
-            
+            spinner.alpha = 1
+            spinner.startAnimating()
+            bookCollectionView.alpha = 0
             self.endpoint = .CrimeBooksApi
             dataModel.fetchData(for: self.endpoint!)
             
         default:
+            spinner.alpha = 1
+            spinner.startAnimating()
+            bookCollectionView.alpha = 0
             self.endpoint = .FictionBooksApi
             dataModel.fetchData(for: self.endpoint!)
             
@@ -100,6 +119,9 @@ extension HomeViewController : BooksAPI {
         self.BooksInfo = data
         self.endpoint = endpoint
         self.bookCollectionView.reloadData()
+        spinner.stopAnimating()
+        spinner.alpha = 0
+        bookCollectionView.alpha = 1
     }
     
     
