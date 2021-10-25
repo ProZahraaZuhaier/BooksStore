@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		493B5BAA271FF8D7007EC11F /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493B5BA9271FF8D7007EC11F /* ErrorHandler.swift */; };
-		494604B7271EC0630024BE51 /* FictionCategory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 494604B6271EC0630024BE51 /* FictionCategory.storyboard */; };
-		494604C8271EE4A10024BE51 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494604C7271EE4A10024BE51 /* Constants.swift */; };
 		494604CA271F1FBF0024BE51 /* CustomBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494604C9271F1FBF0024BE51 /* CustomBookCell.swift */; };
 		494604CC271F3C430024BE51 /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494604CB271F3C430024BE51 /* BookModel.swift */; };
 		494604CE271F400F0024BE51 /* ApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494604CD271F400F0024BE51 /* ApiResponse.swift */; };
@@ -21,14 +19,13 @@
 		496B8E32271C06EC00871DB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 496B8E31271C06EC00871DB9 /* Assets.xcassets */; };
 		496B8E35271C06EC00871DB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 496B8E33271C06EC00871DB9 /* LaunchScreen.storyboard */; };
 		496C88B9271D62A500CB7E17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 496C88B8271D62A500CB7E17 /* Main.storyboard */; };
+		497E80482723EBDA00F3A9DA /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497E80472723EBDA00F3A9DA /* CardView.swift */; };
 		49C705902722ADE8009F5DED /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C7058F2722ADE8009F5DED /* HomeViewController.swift */; };
 		49D0DF8027218D1000E65633 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D0DF7F27218D1000E65633 /* DataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		493B5BA9271FF8D7007EC11F /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
-		494604B6271EC0630024BE51 /* FictionCategory.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FictionCategory.storyboard; sourceTree = "<group>"; };
-		494604C7271EE4A10024BE51 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		494604C9271F1FBF0024BE51 /* CustomBookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBookCell.swift; sourceTree = "<group>"; };
 		494604CB271F3C430024BE51 /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
 		494604CD271F400F0024BE51 /* ApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponse.swift; sourceTree = "<group>"; };
@@ -42,6 +39,7 @@
 		496B8E34271C06EC00871DB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		496B8E36271C06EC00871DB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		496C88B8271D62A500CB7E17 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		497E80472723EBDA00F3A9DA /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		49C7058F2722ADE8009F5DED /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		49D0DF7F27218D1000E65633 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -57,14 +55,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		494604C6271EE4800024BE51 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				494604C7271EE4A10024BE51 /* Constants.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 		496B8E1C271C06EB00871DB9 = {
 			isa = PBXGroup;
 			children = (
@@ -91,7 +81,6 @@
 				49F70F7B271CC33600314A99 /* Models */,
 				49F70F7C271CC33F00314A99 /* Views */,
 				49F70F7D271CC34600314A99 /* Controllers */,
-				494604C6271EE4800024BE51 /* Helpers */,
 			);
 			path = BooksStore;
 			sourceTree = "<group>";
@@ -132,6 +121,7 @@
 			children = (
 				49C7058F2722ADE8009F5DED /* HomeViewController.swift */,
 				494604C9271F1FBF0024BE51 /* CustomBookCell.swift */,
+				497E80472723EBDA00F3A9DA /* CardView.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -140,7 +130,6 @@
 			isa = PBXGroup;
 			children = (
 				496C88B8271D62A500CB7E17 /* Main.storyboard */,
-				494604B6271EC0630024BE51 /* FictionCategory.storyboard */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -205,7 +194,6 @@
 				496B8E35271C06EC00871DB9 /* LaunchScreen.storyboard in Resources */,
 				496B8E32271C06EC00871DB9 /* Assets.xcassets in Resources */,
 				496C88B9271D62A500CB7E17 /* Main.storyboard in Resources */,
-				494604B7271EC0630024BE51 /* FictionCategory.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,11 +211,11 @@
 				494604D7271F54540024BE51 /* Route.swift in Sources */,
 				49D0DF8027218D1000E65633 /* DataModel.swift in Sources */,
 				496B8E29271C06EB00871DB9 /* AppDelegate.swift in Sources */,
+				497E80482723EBDA00F3A9DA /* CardView.swift in Sources */,
 				496B8E2B271C06EB00871DB9 /* SceneDelegate.swift in Sources */,
 				494604D5271F542E0024BE51 /* NetworkService.swift in Sources */,
 				493B5BAA271FF8D7007EC11F /* ErrorHandler.swift in Sources */,
 				494604D9271F54660024BE51 /* Method.swift in Sources */,
-				494604C8271EE4A10024BE51 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

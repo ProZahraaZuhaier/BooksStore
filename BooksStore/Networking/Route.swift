@@ -22,13 +22,13 @@ enum Route {
         switch self {
      
         case .FictionBooksApi:
-            return "&q=fiction+subject"
+            return "&q=fiction+subject:fiction"
         case .RomanceBooksApi:
-            return "&q=subject:Love"
+            return "&q=love+subject:Romance"
         case .Sci_Fi_BooksApi:
-            return "&q=sci-fi+subject"
+            return "&q=sci-fi+subject:"
         case .CrimeBooksApi:
-            return "&q=subject:Crime"
+            return "&q=crime+subject:Crime"
         }
 }
 }

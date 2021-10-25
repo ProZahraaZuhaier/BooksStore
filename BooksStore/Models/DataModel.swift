@@ -8,14 +8,14 @@
 import Foundation
 
 
-protocol BooksAPI {
+protocol APIResponseProtocol {
 
     func booksRetrieved(data: [BookModel] , for endpoint: Route)
 }
 
 class DataModel  {
     
-    var delegate: BooksAPI?
+    var delegate: APIResponseProtocol?
     var data: [BookModel]?
     
     func fetchData(for endpoint : Route){

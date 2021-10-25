@@ -1,5 +1,5 @@
 //
-//  TestViewController.swift
+// HomeViewController.swift
 //  BooksStore
 //
 //  Created by Zahraa Zuhaier L on 22/10/2021.
@@ -9,8 +9,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    @IBOutlet weak var shadowView: UIView!
-    @IBOutlet weak var cardView: UIView!
+    //MARK:- Set Properties and Variables
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var bookCollectionView: UICollectionView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
@@ -19,80 +18,58 @@ class HomeViewController: UIViewController {
     var dataModel = DataModel()
     var endpoint : Route?
     
-    
+    //MARK:- View LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        
-        setupView()
         dataModel.delegate = self
         bookCollectionView.delegate = self
         bookCollectionView.dataSource = self
         didSegmentChanged(self.segmentedControl)
-        
-        
     }
-    override func viewWillAppear(_ animated: Bool) {
-        spinner.alpha = 1
-        spinner.startAnimating()
-    }
-    
-    //MARK:- setup UI function
-    func setupView(){
-        shadowView.layer.cornerRadius = 10
-        cardView.layer.cornerRadius = 8
-        shadowView.layer.shadowColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 0.5)
-        shadowView.layer.shadowOpacity = 1
-        shadowView.layer.shadowOffset = .zero
-        shadowView.layer.shadowRadius = 8
-    }
-    
     //MARK:- Track segmented control index
     @IBAction func didSegmentChanged(_ sender: UISegmentedControl) {
         
+        self.showIndicatorView()
         switch sender.selectedSegmentIndex {
         
         case 0:
-            spinner.alpha = 1
-            spinner.startAnimating()
-            bookCollectionView.alpha = 0
             self.endpoint = .FictionBooksApi
-            dataModel.fetchData(for: self.endpoint!)
-            
-           
             
         case 1:
-            spinner.alpha = 1
-            spinner.startAnimating()
-            bookCollectionView.alpha = 0
             self.endpoint = .RomanceBooksApi
-            dataModel.fetchData(for: self.endpoint!)
             
         case 2:
-            spinner.alpha = 1
-            spinner.startAnimating()
-            bookCollectionView.alpha = 0
             self.endpoint = .Sci_Fi_BooksApi
-            dataModel.fetchData(for: self.endpoint!)
             
         case 3:
-            spinner.alpha = 1
-            spinner.startAnimating()
-            bookCollectionView.alpha = 0
             self.endpoint = .CrimeBooksApi
-            dataModel.fetchData(for: self.endpoint!)
             
         default:
-            spinner.alpha = 1
-            spinner.startAnimating()
-            bookCollectionView.alpha = 0
             self.endpoint = .FictionBooksApi
-            dataModel.fetchData(for: self.endpoint!)
-            
         }
+        dataModel.fetchData(for: self.endpoint!)
+    }
+}
+//MARK:- Methods
+extension HomeViewController{
+    func showIndicatorView(){
+        // show & start indicator
+        spinner.alpha = 1
+        spinner.startAnimating()
+        
+        // and here you can hide other required elements
+        bookCollectionView.alpha = 0
     }
     
+    func hideIndicatorView(){
+        // hide indicator
+        spinner.stopAnimating()
+        spinner.alpha = 0
+        // and here you can show other required elements
+        bookCollectionView.alpha = 1
+    }
 }
 //MARK:- Collection View delegate Methods
 
@@ -113,16 +90,13 @@ extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSo
     }
 }
 //MARK:- implement Protocol Books API Methods
-extension HomeViewController : BooksAPI {
+extension HomeViewController : APIResponseProtocol {
     
     func booksRetrieved(data: [BookModel], for endpoint: Route) {
         self.BooksInfo = data
         self.endpoint = endpoint
         self.bookCollectionView.reloadData()
-        spinner.stopAnimating()
-        spinner.alpha = 0
-        bookCollectionView.alpha = 1
+        // stop indicator
+        self.hideIndicatorView()
     }
-    
-    
 }
