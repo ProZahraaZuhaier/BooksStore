@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FolioReaderKit
 
 class HomeViewController: UIViewController {
     
@@ -88,7 +89,12 @@ extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSo
         return cell
         
     }
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        <#code#>
+//    }
 }
+
+
 //MARK:- implement Protocol Books API Methods
 extension HomeViewController : APIResponseProtocol {
     
