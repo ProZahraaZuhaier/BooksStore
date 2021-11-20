@@ -6,30 +6,59 @@
 //
 
 import UIKit
-import FolioReaderKit
+
 
 class HomeViewController: UIViewController {
     
-    //MARK:- Set Properties and Variables
+    //MARK: - Set Properties and Variables
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var bookCollectionView: UICollectionView!
+    @IBOutlet weak var BooksTableView: UITableView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet var mainView: UIView!
     
     var BooksInfo = [BookModel]()
     var dataModel = DataModel()
     var endpoint : Route?
     
-    //MARK:- View LifeCycle Methods
+  
+        
+    //MARK: - View LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        overrideUserInterfaceStyle = .dark
+        
+        mainView.alpha = 1
         dataModel.delegate = self
-        bookCollectionView.delegate = self
-        bookCollectionView.dataSource = self
+        BooksTableView.delegate = self
+        BooksTableView.dataSource = self
         didSegmentChanged(self.segmentedControl)
     }
-    //MARK:- Track segmented control index
+  
+    
+   //MARK: - Prepare segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Detect the index path the user selected
+        let indexPath = BooksTableView.indexPathForSelectedRow
+        
+        guard indexPath != nil else {
+            // the user hasn't selected anything
+            return
+        }
+        
+        // Get the book
+        let bookInfo = BooksInfo[indexPath!.row]
+        
+        // Get a refrence to the book details view contrller
+        let detailVC = segue.destination as! BookPageDetailsViewController
+        
+        // pass the book info to the book details view controller
+        detailVC.bookInfo = bookInfo
+    }
+
+    //MARK: - Track segmented control index
     @IBAction func didSegmentChanged(_ sender: UISegmentedControl) {
         
         self.showIndicatorView()
@@ -42,7 +71,7 @@ class HomeViewController: UIViewController {
             self.endpoint = .RomanceBooksApi
             
         case 2:
-            self.endpoint = .Sci_Fi_BooksApi
+            self.endpoint = .Drama_BooksApi
             
         case 3:
             self.endpoint = .CrimeBooksApi
@@ -53,7 +82,7 @@ class HomeViewController: UIViewController {
         dataModel.fetchData(for: self.endpoint!)
     }
 }
-//MARK:- Methods
+//MARK: - Methods
 extension HomeViewController{
     func showIndicatorView(){
         // show & start indicator
@@ -61,7 +90,7 @@ extension HomeViewController{
         spinner.startAnimating()
         
         // and here you can hide other required elements
-        bookCollectionView.alpha = 0
+        BooksTableView.alpha = 0
     }
     
     func hideIndicatorView(){
@@ -69,40 +98,41 @@ extension HomeViewController{
         spinner.stopAnimating()
         spinner.alpha = 0
         // and here you can show other required elements
-        bookCollectionView.alpha = 1
+        BooksTableView.alpha = 1
     }
 }
-//MARK:- Collection View delegate Methods
+//MARK: - Collection View delegate Methods
 
-extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
+extension HomeViewController : UITableViewDelegate , UITableViewDataSource, UICollectionViewDelegateFlowLayout {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return BooksInfo.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomBookCell", for: indexPath) as! CustomBookCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomBookCell", for: indexPath) as! CustomBookCardCell
         let data = BooksInfo[indexPath.row]
         cell.configureCell(with: data)
         return cell
-        
     }
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        <#code#>
-//    }
+   
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 250;
+    }
+
 }
 
-
-//MARK:- implement Protocol Books API Methods
+//MARK: - implement Protocol Books API Methods
 extension HomeViewController : APIResponseProtocol {
     
     func booksRetrieved(data: [BookModel], for endpoint: Route) {
         self.BooksInfo = data
         self.endpoint = endpoint
-        self.bookCollectionView.reloadData()
+        self.BooksTableView.reloadData()
         // stop indicator
         self.hideIndicatorView()
     }
 }
+

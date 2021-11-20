@@ -31,6 +31,10 @@ struct VolumeInfo: Codable {
     let publishedDate: String?
     let imageLinks: ImageLinks?
     let previewLink: String?
+    let language:String?
+    let pageCount: Int? 
+    let categories: [String]?
+    let description: String?
 }
 // MARK: - ImageLinks
 struct ImageLinks: Codable {

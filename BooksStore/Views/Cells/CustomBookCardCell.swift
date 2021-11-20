@@ -1,15 +1,15 @@
 //
-//  CustomBookCell.swift
+//  CustomBookCardCell.swift
 //  BooksStore
 //
-//  Created by Zahraa Zuhaier L on 19/10/2021.
+//  Created by Zahraa Zuhaier L on 15/11/2021.
 //
 
 import UIKit
 
-class CustomBookCell: UICollectionViewCell {
+class CustomBookCardCell: UITableViewCell {
     
-    //MARK:- Set Properties and Variables
+    //MARK: - Set Properties and Variables
     @IBOutlet weak var bookTitle: UILabel!
     @IBOutlet weak var authorName: UILabel!
     @IBOutlet weak var bookCoverImage: UIImageView!
@@ -19,24 +19,29 @@ class CustomBookCell: UICollectionViewCell {
     
     var bookInfo:BookModel?
     
-    
-    //MARK:- View LifeCycle Methods
+    //MARK: - View Lifecycle methods
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialaization code
+        // Initialization code
     }
     
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        // Configure the view for the selected state
+        overrideUserInterfaceStyle = .dark
+    }
     
-    //MARK:- Methods
+    //MARK: - Methods
     func configureCell (with data: BookModel) {
         self.bookInfo = data
-       
+        
         DispatchQueue.main.async {
             self.bookTitle.text = self.bookInfo!.volumeInfo?.title  ?? "Unknown title"
             self.authorName.text = self.bookInfo!.volumeInfo?.authors?[0] ?? "Unknown author"
             self.publishedDate.text = self.bookInfo?.volumeInfo?.publishedDate ?? "Unknown published date"
         }
-
+        
         guard let _ = self.bookInfo!.volumeInfo?.imageLinks?.thumbnail  else {
             print(ErrorHandler.invalidURL)
             return
@@ -53,9 +58,7 @@ class CustomBookCell: UICollectionViewCell {
                 {   DispatchQueue.main.async {
                     self.bookCoverImage.image = UIImage(data: data!)
                 }
-                
                 }
-                
             }
             else {
                 
@@ -67,4 +70,3 @@ class CustomBookCell: UICollectionViewCell {
         }.resume()
     }
 }
-
