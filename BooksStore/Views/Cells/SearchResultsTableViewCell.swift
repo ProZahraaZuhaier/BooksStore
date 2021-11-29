@@ -1,38 +1,24 @@
 //
-//  BookDetailsTableViewCell.swift
+//  SearchResultsTableViewCell.swift
 //  BooksStore
 //
-//  Created by Zahraa Zuhaier L on 16/11/2021.
+//  Created by Zahraa Zuhaier L on 29/11/2021.
 //
 
 import UIKit
-import FolioReaderKit
 
-
-class BookDetailsTableViewCell: UITableViewCell {
+class SearchResultsTableViewCell: UITableViewCell {
     
-    //MARK: - Set properties & Variables
-    @IBOutlet weak var bookImage: UIImageView!
-    @IBOutlet weak var bookkTitle: UILabel!
     @IBOutlet weak var authorName: UILabel!
-    @IBOutlet weak var publishedDate: UILabel!
-    @IBOutlet weak var countPage: UILabel!
-    @IBOutlet weak var categories: UILabel!
-    @IBOutlet weak var language: UILabel!
-
-    @IBOutlet weak var bookDescription: UILabel!
-    
+    @IBOutlet weak var bookTitle: UILabel!
+    @IBOutlet weak var bookImage: UIImageView!
     
     var bookInfo:BookModel?
     var bookURL : URL?
     var isDownloaded = false
-    
-    
-    //MARK: - View LifeCycle Methods
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        overrideUserInterfaceStyle = .dark
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -40,27 +26,18 @@ class BookDetailsTableViewCell: UITableViewCell {
         
         // Configure the view for the selected state
     }
+    
 }
-
-
-
 //MARK: - Configure Cell
-extension BookDetailsTableViewCell {
+extension SearchResultsTableViewCell {
     //MARK:- Methods
     func configureCell (with data: BookModel) {
         self.bookInfo = data
-        let pagecount = self.bookInfo?.volumeInfo?.pageCount
-        
-        print(pagecount)
         
         DispatchQueue.main.async {
-            self.bookkTitle.text = self.bookInfo!.volumeInfo?.title  ?? "Unknown title"
+            self.bookTitle.text = self.bookInfo!.volumeInfo?.title  ?? "Unknown title"
             self.authorName.text = self.bookInfo!.volumeInfo?.authors?[0] ?? "Unknown author"
-            self.publishedDate.text = self.bookInfo?.volumeInfo?.publishedDate ?? "Unknown published date"
-            self.countPage.text = String(self.bookInfo?.volumeInfo?.pageCount ?? 0)
-            self.language.text = self.bookInfo?.volumeInfo?.language ?? "EN"
-            self.categories.text = self.bookInfo?.volumeInfo?.categories?[0] ?? "Unknown Category"
-            self.bookDescription.text = self.bookInfo?.volumeInfo?.description ?? "not available"
+            
         }
         
         guard let _ = self.bookInfo!.volumeInfo?.imageLinks?.thumbnail  else {
@@ -93,9 +70,3 @@ extension BookDetailsTableViewCell {
         }.resume()
     }
 }
-
-
-
-
-
-

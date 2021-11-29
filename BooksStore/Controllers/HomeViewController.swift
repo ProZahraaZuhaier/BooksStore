@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 class HomeViewController: UIViewController {
     
     //MARK: - Set Properties and Variables
@@ -19,24 +18,20 @@ class HomeViewController: UIViewController {
     var BooksInfo = [BookModel]()
     var dataModel = DataModel()
     var endpoint : Route?
-    
-  
-        
+
     //MARK: - View LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      
         // Do any additional setup after loading the view.
         overrideUserInterfaceStyle = .dark
-        
+//        fetchBooks()
         mainView.alpha = 1
         dataModel.delegate = self
         BooksTableView.delegate = self
         BooksTableView.dataSource = self
         didSegmentChanged(self.segmentedControl)
-    }
-  
-    
+        }
    //MARK: - Prepare segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -80,6 +75,8 @@ class HomeViewController: UIViewController {
             self.endpoint = .FictionBooksApi
         }
         dataModel.fetchData(for: self.endpoint!)
+       
+        
     }
 }
 //MARK: - Methods
@@ -126,7 +123,7 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource, UICo
 
 //MARK: - implement Protocol Books API Methods
 extension HomeViewController : APIResponseProtocol {
-    
+
     func booksRetrieved(data: [BookModel], for endpoint: Route) {
         self.BooksInfo = data
         self.endpoint = endpoint
@@ -135,4 +132,5 @@ extension HomeViewController : APIResponseProtocol {
         self.hideIndicatorView()
     }
 }
+
 

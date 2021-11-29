@@ -8,14 +8,21 @@
 import Foundation
 
 
+
 protocol APIResponseProtocol {
 
-    func booksRetrieved(data: [BookModel] , for endpoint: Route)
+    func booksRetrieved(data: [BookModel], for endpoint: Route)
+}
+
+protocol SearchAPIProtocol {
+    func didResultsFetched(data:[BookModel])
 }
 
 class DataModel  {
     
     var delegate: APIResponseProtocol?
+    var searchDelegate: SearchAPIProtocol?
+    
     var data: [BookModel]?
     
     func fetchData(for endpoint : Route){
@@ -26,11 +33,33 @@ class DataModel  {
             
             case .success(let data):
                 self.data = data
+                print(data)
                 self.delegate?.booksRetrieved(data:  self.data! , for: endpoint)
+                
 
             case .failure(let error):
                 print(error)
             }
         }
     }
+    
+    
+    func fetchSearchResults(searchKeyword:String){
+        NetworkService.shared.fetchSearchResults(searchKeyword: searchKeyword , completion:
+            
+         { result in
+            switch result {
+            
+            case .success(let data):
+                self.data = data
+                print(data)
+                self.searchDelegate?.didResultsFetched(data: data)
+                
+
+            case .failure(let error):
+                print(error)
+            }
+        })
+    }
+                                                 
 }

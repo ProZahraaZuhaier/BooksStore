@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct NetworkService {
+
+struct NetworkService  {
 
     static let shared = NetworkService()
     private init(){}
@@ -16,8 +17,11 @@ struct NetworkService {
         
         makeRequest(route: route, method: method, completion: completion)
     }
+    func fetchSearchResults (searchKeyword:String , completion: @escaping(Result<[BookModel],Error>) -> Void) {
+        searchBooksRequest(searchKeyword: searchKeyword, completion: completion)
+    }
     
-    //MARK:- This function to generate URL Request
+    //MARK: - This function to generate URL Request
     /// - Parameters:
     ///   - route: the path to the resourses
     ///   - method: type of request
@@ -57,7 +61,7 @@ struct NetworkService {
     }
     
     
-    //MARK:- Make request Method
+    //MARK: - Make request Method
     
     private func makeRequest<T: Decodable>(route: Route ,
                                            method: Method ,
@@ -96,7 +100,7 @@ struct NetworkService {
         
     }
     
-    //MARK:- Handle Response Method
+    //MARK: - Handle Response Method
     private func handleResponse<T: Decodable>(result: Result<Data , Error>? ,
                                               completion: (Result<T , Error>) -> Void) {
     
@@ -124,5 +128,41 @@ struct NetworkService {
         case .failure(let error):
             completion(.failure(error))
         }
+    }
+}
+
+//MARK: - Search Api
+extension NetworkService {
+ func searchBooksRequest<T:Decodable>(searchKeyword:String , completion: @escaping (Result<T , Error>) -> Void){
+        
+        let urlString = "https://www.googleapis.com/books/v1/volumes?q=\(searchKeyword)&key=AIzaSyAnPJB32xH9U1CKylidXNPfj0s3Ge-UGos&filter=free-ebooks&printType=books&orderBy=newest"
+        
+        let url = URL(string: urlString)
+        guard let url = url else {return}
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            
+            var result: Result<Data , Error>?
+            
+            if let data = data {
+                result = .success(data)
+                let responseString = String(data: data , encoding: .utf8) ??  " Could not stringify data"
+//                print(responseString)
+                
+            }
+            else if let error = error {
+                result = .failure(error)
+                print("the error is: \(error.localizedDescription)")
+            }
+            
+            DispatchQueue.main.async {
+                
+                //TODO:- handle response
+                self.handleResponse(result: result, completion: completion)
+                
+            }
+            
+        }.resume()
+        
+    
     }
 }

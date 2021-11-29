@@ -167,7 +167,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView opaque="NO" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="200" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="iYg-rK-MjX">
+                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="200" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="iYg-rK-MjX">
                                 <rect key="frame" x="0.0" y="0.0" width="428" height="763"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
@@ -214,7 +214,9 @@
                             <constraint firstItem="lw7-uE-URv" firstAttribute="bottom" secondItem="BCN-f0-baD" secondAttribute="bottom" constant="20" id="yuO-sU-zEU"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="fLY-dv-G8i"/>
+                    <navigationItem key="navigationItem" id="fLY-dv-G8i">
+                        <barButtonItem key="backBarButtonItem" title="back" id="qCb-gB-APG"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="downloadButton" destination="BCN-f0-baD" id="LWl-n1-6HO"/>
                         <outlet property="spinner" destination="Ide-eG-n3o" id="uHr-P4-tQE"/>
@@ -274,10 +276,19 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="nJ2-pT-VAC">
                         <rect key="frame" x="0.0" y="44" width="428" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                         <navigationBarAppearance key="standardAppearance">
                             <textAttributes key="titleTextAttributes"/>
                             <barButtonItemAppearance key="backButtonAppearance">
-                                <barButtonItemStateAppearance key="normal"/>
+                                <barButtonItemStateAppearance key="normal">
+                                    <textAttributes key="titleTextAttributes">
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </textAttributes>
+                                </barButtonItemStateAppearance>
                                 <barButtonItemStateAppearance key="highlighted"/>
                                 <barButtonItemStateAppearance key="disabled"/>
                                 <barButtonItemStateAppearance key="focused"/>
@@ -317,18 +328,47 @@
         <!--Search-->
         <scene sceneID="EKI-8R-UM8">
             <objects>
-                <viewController id="N1Y-33-LfV" sceneMemberID="viewController">
+                <viewController id="N1Y-33-LfV" customClass="SearchViewController" customModule="BooksStore" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UZr-Mu-LQ6">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="786"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" style="medium" id="UUZ-Rn-BfQ">
+                                <rect key="frame" x="0.0" y="371" width="428" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="CXV-9c-r2p">
+                                <rect key="frame" x="0.0" y="51" width="428" height="652"/>
+                            </tableView>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search Books" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MEu-jx-6g0">
+                                <rect key="frame" x="0.0" y="0.0" width="428" height="51"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Ec0-5k-uLs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="CXV-9c-r2p" firstAttribute="top" secondItem="MEu-jx-6g0" secondAttribute="bottom" id="HIM-Y1-hI4"/>
+                            <constraint firstItem="MEu-jx-6g0" firstAttribute="leading" secondItem="Ec0-5k-uLs" secondAttribute="leading" id="HaM-yR-IIv"/>
+                            <constraint firstItem="CXV-9c-r2p" firstAttribute="top" secondItem="MEu-jx-6g0" secondAttribute="bottom" id="QQp-da-81E"/>
+                            <constraint firstItem="MEu-jx-6g0" firstAttribute="top" secondItem="Ec0-5k-uLs" secondAttribute="top" id="bcJ-bH-BEo"/>
+                            <constraint firstItem="MEu-jx-6g0" firstAttribute="trailing" secondItem="Ec0-5k-uLs" secondAttribute="trailing" id="f8M-WL-W0Y"/>
+                            <constraint firstItem="UUZ-Rn-BfQ" firstAttribute="top" secondItem="Ec0-5k-uLs" secondAttribute="top" constant="100" id="jTc-5K-8tt"/>
+                            <constraint firstItem="CXV-9c-r2p" firstAttribute="bottom" secondItem="Ec0-5k-uLs" secondAttribute="bottom" id="sSC-YS-qYo"/>
+                            <constraint firstItem="CXV-9c-r2p" firstAttribute="trailing" secondItem="Ec0-5k-uLs" secondAttribute="trailing" id="vLF-7w-BAa"/>
+                            <constraint firstItem="CXV-9c-r2p" firstAttribute="leading" secondItem="Ec0-5k-uLs" secondAttribute="leading" id="ysf-6Y-hju"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="0QQ-7Y-q1E"/>
+                    <connections>
+                        <outlet property="searchBar" destination="MEu-jx-6g0" id="Bwn-o0-n2k"/>
+                        <outlet property="spinner" destination="UUZ-Rn-BfQ" id="l6u-lk-Hl3"/>
+                        <outlet property="tabelView" destination="CXV-9c-r2p" id="QVP-YN-tEH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EXB-f4-DQy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3114" y="1587"/>
+            <point key="canvasLocation" x="-3114.9532710280373" y="1586.8250539956805"/>
         </scene>
         <!--Search-->
         <scene sceneID="lge-pU-Di5">

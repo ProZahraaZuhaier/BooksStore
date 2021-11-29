@@ -12,4 +12,6 @@ struct ApiResponse<T: Decodable>: Decodable {
     
     let totalItems: Int?
     let items: T?
+    
+  
 }

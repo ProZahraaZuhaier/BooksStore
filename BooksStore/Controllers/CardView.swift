@@ -17,7 +17,7 @@ import UIKit
     }
     */
 
-    @IBInspectable var cornerradius:CGFloat = 10
+    @IBInspectable var cornerradius:CGFloat = 5
     @IBInspectable var shadowOffsetWidth:CGFloat = 0
     @IBInspectable var shadowOffsetHeight:CGFloat = 3
     @IBInspectable var shadowColor: UIColor = UIColor.init(cgColor: CGColor(red: 0, green: 0, blue: 0, alpha: 0.5))

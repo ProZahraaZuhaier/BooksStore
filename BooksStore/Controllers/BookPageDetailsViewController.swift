@@ -7,7 +7,7 @@
 
 import UIKit
 import FolioReaderKit
-import CoreMedia
+import CoreData
 
 class BookPageDetailsViewController: UIViewController {
     
@@ -16,13 +16,15 @@ class BookPageDetailsViewController: UIViewController {
     @IBOutlet weak var downloadButton: UIButton!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
-    var bookInfo:BookModel?
+    var bookInfo: BookModel?
     var bookPath: String?
     var bookURL : URL?
-    var isDownloaded = false
+    var isDownloaded:Bool?
     var downloader = DownloaderViewController()
     var cellModel = BookDetailsTableViewCell()
     let folioReader = FolioReader()
+//    let context = (UIApplication.shared.delegate as!AppDelegate).persistentContainer.viewContext
+    
     
     //MARK: - View Lifecycle methods
     override func viewDidLoad() {
@@ -30,18 +32,28 @@ class BookPageDetailsViewController: UIViewController {
         // Do any additional setup after loading the view.
         overrideUserInterfaceStyle = .dark
         
+        
+//        if bookInfo?.volumeInfo?.id == book?.id {
+//            DispatchQueue.main.async {
+//                self.downloadButton.setTitle("Open", for: .normal)
+//
+//            }
+//        }
+     
         //MARK: - Trigger Delegates
         tabelView.delegate = self
         tabelView.dataSource = self
         tabelView.register(UINib(nibName: "BookDetailsTableViewCell", bundle: nil), forCellReuseIdentifier: "bookDetailsCell")
         downloader.downloadStatusDelegate = self
         downloader.saveFileDelegate = self
-    }
+ }
     
     //MARK: - Methods
     @IBAction func downloadButtonTapped(_ sender: Any) {
-        
-        if downloadButton.titleLabel?.text == "Download"  {
+        print(bookInfo?.volumeInfo?.previewLink)
+        print(bookInfo?.volumeInfo?.id)
+//        if book?.isDownloaded == false{
+        if downloadButton.titleLabel?.text == "Download"{
             let bookURL = self.bookInfo?.volumeInfo?.previewLink
             DispatchQueue.main.async {
                 self.downloadButton.isEnabled = false
@@ -50,12 +62,14 @@ class BookPageDetailsViewController: UIViewController {
             }
             // test url
             self.downloader.downloadBook(from: "https://filesamples.com/samples/ebook/epub/Sway.epub")
-            
+//            self.book?.isDownloaded = self.isDownloaded
+//            self.book?.path = self.bookURL?.path
+//            try! context.save()
+//            print(book)
+     
         }
         
         else {
-            
-            
             self.open(epub: self.bookURL?.path ?? "")
             
         }
@@ -67,32 +81,42 @@ class BookPageDetailsViewController: UIViewController {
 extension BookPageDetailsViewController : DownloadFileProtocol {
     func didFileDownloaded(status: Bool) {
         self.isDownloaded = status
+        
+        
         if status == true {
+            
             DispatchQueue.main.async {
                 self.downloadButton.setTitle("Open", for: .normal)
                 self.downloadButton.isEnabled = true
                 self.spinner.alpha = 0
                 self.spinner.stopAnimating()
             }
+            
+//            self.book?.isDownloaded = self.isDownloaded
+//            try! context.save()
+//            print(book)
+           
         }
-        else {
-            DispatchQueue.main.async {
-                self.downloadButton.setTitle("Download", for: .normal)
-                self.downloadButton.isEnabled = true
-                self.spinner.alpha = 0
-                self.spinner.stopAnimating()
-            }
-        }
+//        else {
+//            DispatchQueue.main.async {
+//                self.downloadButton.setTitle("Download", for: .normal)
+//                self.downloadButton.isEnabled = true
+//                self.spinner.alpha = 0
+//                self.spinner.stopAnimating()
+//            }
+//
+//        }
     }
 }
 //MARK: - Implement save file Protocol methods
 extension BookPageDetailsViewController : SaveFileProtocol{
     func fetchDownloadedFilePath(path: URL) {
         self.bookURL = path
-        print("the book url is :- \(self.bookURL)")
+//        print(self.isDownloaded)
+//        print("the book url is :- \(self.bookURL)")
+//        store(isDownload: self.isDownloaded!, bookPath: self.bookURL!.path)
+        
     }
-    
-    
 }
 //MARK: - Table View Delegate Methods
 extension BookPageDetailsViewController : UITableViewDelegate , UITableViewDataSource {
@@ -108,7 +132,7 @@ extension BookPageDetailsViewController : UITableViewDelegate , UITableViewDataS
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(tableView.frame.height)
+        return 1500;
     }
 }
 //MARK: - FolioReader Open File method
@@ -122,10 +146,9 @@ extension BookPageDetailsViewController {
         print("file name is : \(fileName)")
         DispatchQueue.main.async {
             self.folioReader.presentReader(parentViewController: self , withEpubPath: epub, andConfig: readerConfiguration, shouldRemoveEpub: false)
-            
-        }
-        
+//            self.view.alpha = 0
     }
+}
 }
 //MARK: - FolioReader Configuration
 extension  BookPageDetailsViewController {
@@ -139,7 +162,7 @@ extension  BookPageDetailsViewController {
         config.nightModeBackground = .black
         config.menuTextColor = .systemOrange
         config.tintColor = .systemOrange
-        
+
         if let image = UIImage(named: "demo-bg") {
             let customImageQuote = QuoteImage(withImage: image, alpha: 0.6, backgroundColor: UIColor.black)
             config.quoteCustomBackgrounds.append(customImageQuote)
@@ -152,3 +175,13 @@ extension  BookPageDetailsViewController {
         return config
     }
 }
+
+//extension BookPageDetailsViewController {
+//    func store(isDownload:Bool , bookPath:String){
+//        let book = NSEntityDescription.entity(forEntityName: "Book", in: self.context)
+//        book?.setValue(isDownload, forKey: "isDownload")
+//        book?.setValue(bookPath, forKey: "bookPath")
+//
+//        try!context.save()
+//    }
+//}

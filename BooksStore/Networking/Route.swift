@@ -16,7 +16,7 @@ enum Route {
     case Drama_BooksApi
     case CrimeBooksApi
     
-    
+   
     var path: String {
         
         switch self {
@@ -29,7 +29,10 @@ enum Route {
             return "&q=life+subject:Drama"
         case .CrimeBooksApi:
             return "&q=crime+subject:Crime"
+
         }
 }
 }
+
+
 
