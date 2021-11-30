@@ -157,18 +157,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6836.9158878504668" y="1629.5896328293738"/>
+            <point key="canvasLocation" x="-5899" y="1637"/>
         </scene>
         <!--Book Page Details View Controller-->
         <scene sceneID="yx7-nd-fhI">
             <objects>
                 <viewController id="zN1-7V-R2D" customClass="BookPageDetailsViewController" customModule="BooksStore" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fDP-8g-q59">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="786"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="200" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="iYg-rK-MjX">
-                                <rect key="frame" x="0.0" y="0.0" width="428" height="763"/>
+                                <rect key="frame" x="0.0" y="0.0" width="428" height="623"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="L2T-ha-3rJ">
@@ -182,7 +182,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCN-f0-baD">
-                                <rect key="frame" x="20" y="783" width="388" height="40"/>
+                                <rect key="frame" x="20" y="643" width="388" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="NNf-ef-HoT"/>
                                 </constraints>
@@ -197,7 +197,7 @@
                                 </connections>
                             </button>
                             <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Ide-eG-n3o">
-                                <rect key="frame" x="204" y="793" width="20" height="20"/>
+                                <rect key="frame" x="204" y="653" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lw7-uE-URv"/>
@@ -225,7 +225,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JoJ-7A-7YB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-7797" y="2383"/>
+            <point key="canvasLocation" x="-4358" y="2752"/>
         </scene>
         <!--Reading Now-->
         <scene sceneID="oKF-aS-X3I">
@@ -241,7 +241,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sW2-fm-W5E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4358" y="1630"/>
+            <point key="canvasLocation" x="-4358" y="1637"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="GLU-Hc-ADY">
@@ -263,7 +263,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ox4-PJ-XRK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4033" y="87"/>
+            <point key="canvasLocation" x="-4358" y="-242"/>
         </scene>
         <!--Library-->
         <scene sceneID="rWQ-Up-dcq">
@@ -339,6 +339,19 @@
                             </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="CXV-9c-r2p">
                                 <rect key="frame" x="0.0" y="51" width="428" height="652"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="e12-Yf-9xo">
+                                        <rect key="frame" x="0.0" y="44.666666030883789" width="428" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e12-Yf-9xo" id="Qde-jO-37r">
+                                            <rect key="frame" x="0.0" y="0.0" width="428" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="zN1-7V-R2D" kind="show" identifier="goToDetailVC" id="l7e-TP-pn5"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                             <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search Books" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MEu-jx-6g0">
                                 <rect key="frame" x="0.0" y="0.0" width="428" height="51"/>
@@ -368,7 +381,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EXB-f4-DQy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3114.9532710280373" y="1586.8250539956805"/>
+            <point key="canvasLocation" x="-3115" y="1637"/>
         </scene>
         <!--Search-->
         <scene sceneID="lge-pU-Di5">
@@ -390,6 +403,9 @@
             <point key="canvasLocation" x="-3114" y="824"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="l7e-TP-pn5"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="book" width="50" height="50"/>
         <image name="libraryfill" width="50" height="50"/>
