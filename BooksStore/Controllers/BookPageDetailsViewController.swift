@@ -23,7 +23,8 @@ class BookPageDetailsViewController: UIViewController {
     var downloader = DownloaderViewController()
     var cellModel = BookDetailsTableViewCell()
     let folioReader = FolioReader()
-//    let context = (UIApplication.shared.delegate as!AppDelegate).persistentContainer.viewContext
+    let context = (UIApplication.shared.delegate as!AppDelegate).persistentContainer.viewContext
+    var books:[Book]?
     
     
     //MARK: - View Lifecycle methods
@@ -31,14 +32,6 @@ class BookPageDetailsViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         overrideUserInterfaceStyle = .dark
-        
-        
-//        if bookInfo?.volumeInfo?.id == book?.id {
-//            DispatchQueue.main.async {
-//                self.downloadButton.setTitle("Open", for: .normal)
-//
-//            }
-//        }
      
         //MARK: - Trigger Delegates
         tabelView.delegate = self
@@ -46,13 +39,11 @@ class BookPageDetailsViewController: UIViewController {
         tabelView.register(UINib(nibName: "BookDetailsTableViewCell", bundle: nil), forCellReuseIdentifier: "bookDetailsCell")
         downloader.downloadStatusDelegate = self
         downloader.saveFileDelegate = self
- }
-    
+       
+    }
     //MARK: - Methods
     @IBAction func downloadButtonTapped(_ sender: Any) {
-        print(bookInfo?.volumeInfo?.previewLink)
-        print(bookInfo?.volumeInfo?.id)
-//        if book?.isDownloaded == false{
+  
         if downloadButton.titleLabel?.text == "Download"{
             let bookURL = self.bookInfo?.volumeInfo?.previewLink
             DispatchQueue.main.async {
@@ -62,14 +53,11 @@ class BookPageDetailsViewController: UIViewController {
             }
             // test url
             self.downloader.downloadBook(from: "https://filesamples.com/samples/ebook/epub/Sway.epub")
-//            self.book?.isDownloaded = self.isDownloaded
-//            self.book?.path = self.bookURL?.path
-//            try! context.save()
-//            print(book)
-     
+
         }
         
         else {
+
             self.open(epub: self.bookURL?.path ?? "")
             
         }
@@ -91,32 +79,58 @@ extension BookPageDetailsViewController : DownloadFileProtocol {
                 self.spinner.alpha = 0
                 self.spinner.stopAnimating()
             }
-            
-//            self.book?.isDownloaded = self.isDownloaded
-//            try! context.save()
-//            print(book)
+
            
         }
-//        else {
-//            DispatchQueue.main.async {
-//                self.downloadButton.setTitle("Download", for: .normal)
-//                self.downloadButton.isEnabled = true
-//                self.spinner.alpha = 0
-//                self.spinner.stopAnimating()
-//            }
-//
-//        }
+
     }
 }
 //MARK: - Implement save file Protocol methods
 extension BookPageDetailsViewController : SaveFileProtocol{
     func fetchDownloadedFilePath(path: URL) {
         self.bookURL = path
-//        print(self.isDownloaded)
-//        print("the book url is :- \(self.bookURL)")
-//        store(isDownload: self.isDownloaded!, bookPath: self.bookURL!.path)
-        
+        // add this book to the core data
+        saveBookInfo(context: self.context)
     }
+}
+//MARK: - Core data Methods
+extension BookPageDetailsViewController {
+    func saveBookInfo(context: NSManagedObjectContext){
+ 
+    let book = Book(context: context)
+    
+    book.isDownloaded = self.isDownloaded!
+    book.bookPath = self.bookURL?.path
+    book.bookID = self.bookInfo?.volumeInfo?.id
+    book.bookTitle = self.bookInfo?.volumeInfo?.title
+    book.authorName = self.bookInfo?.volumeInfo?.authors?[0] ?? "Unknown author"
+    book.bookImage = self.bookInfo?.volumeInfo?.imageLinks?.thumbnail
+    book.publishedDate = self.bookInfo?.volumeInfo?.publishedDate
+    
+   do {
+            try context.save()
+   }
+   catch{
+            print("Unable to Save Book, \(error)")
+    }
+    }
+    
+//    func fetchData(context: NSManagedObjectContext){
+//        let fetchRequest: NSFetchRequest<Book> = Book.fetchRequest()
+//        let results = try! context.fetch(fetchRequest)
+//        self.books = results
+//        print(self.books)
+//
+//        for result in results {
+//            if result.bookID == self.bookInfo?.volumeInfo?.id{
+//                print(result.bookID)
+//                print(self.bookInfo?.volumeInfo?.id)
+//            }
+////            print(result.bookTitle)
+////            print(result.bookPath)
+////            print(result.isDownloaded)
+//    }
+//}
 }
 //MARK: - Table View Delegate Methods
 extension BookPageDetailsViewController : UITableViewDelegate , UITableViewDataSource {
@@ -146,7 +160,6 @@ extension BookPageDetailsViewController {
         print("file name is : \(fileName)")
         DispatchQueue.main.async {
             self.folioReader.presentReader(parentViewController: self , withEpubPath: epub, andConfig: readerConfiguration, shouldRemoveEpub: false)
-//            self.view.alpha = 0
     }
 }
 }
@@ -176,12 +189,3 @@ extension  BookPageDetailsViewController {
     }
 }
 
-//extension BookPageDetailsViewController {
-//    func store(isDownload:Bool , bookPath:String){
-//        let book = NSEntityDescription.entity(forEntityName: "Book", in: self.context)
-//        book?.setValue(isDownload, forKey: "isDownload")
-//        book?.setValue(bookPath, forKey: "bookPath")
-//
-//        try!context.save()
-//    }
-//}

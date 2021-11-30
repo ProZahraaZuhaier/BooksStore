@@ -30,6 +30,7 @@ class HomeViewController: UIViewController {
         dataModel.delegate = self
         BooksTableView.delegate = self
         BooksTableView.dataSource = self
+        BooksTableView.register(UINib(nibName: "BookCardTableViewCell", bundle: nil), forCellReuseIdentifier: "BookCardCell")
         didSegmentChanged(self.segmentedControl)
         }
    //MARK: - Prepare segue
@@ -106,7 +107,7 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource, UICo
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomBookCell", for: indexPath) as! CustomBookCardCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BookCardCell", for: indexPath) as! BookCardTableViewCell
         let data = BooksInfo[indexPath.row]
         cell.configureCell(with: data)
         return cell
@@ -118,7 +119,10 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource, UICo
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 250;
     }
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "goToDetailVC", sender: self)
+        
+    }
 }
 
 //MARK: - implement Protocol Books API Methods

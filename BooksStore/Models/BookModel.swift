@@ -15,8 +15,6 @@ struct  BookModel : Codable  {
     //Book Info
     let volumeInfo: VolumeInfo?
     let accessInfo: AccessInfo?
-     
-   
  
     }
 
@@ -38,11 +36,6 @@ struct VolumeInfo : Codable {
     let pageCount: Int?
     let categories: [String]?
     let description: String?
-
-//    enum CodingKeys: String, CodingKey {
-//        case description = "bookDescription"
-//    }
-
 }
 // MARK: - ImageLinks
  struct ImageLinks: Codable {
