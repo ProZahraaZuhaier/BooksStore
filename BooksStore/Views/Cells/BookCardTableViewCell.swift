@@ -43,27 +43,29 @@ func configureCell (with data: BookModel) {
         return
     }
     let imageUrlString = self.bookInfo!.volumeInfo?.imageLinks?.thumbnail
-    
-    
-    let imageURL = URL(string: imageUrlString!)
-    
-    URLSession.shared.dataTask(with: imageURL!) { data, response, error in
-        
-        if error == nil && data != nil {
-            if self.bookInfo?.volumeInfo?.imageLinks?.thumbnail == imageUrlString
-            {   DispatchQueue.main.async {
-                self.bookCoverImage.image = UIImage(data: data!)
-            }
-            }
-        }
-        else {
-            
-            DispatchQueue.main.async {
-                self.bookCoverImage.image = UIImage(named: "placeholderImage")
-            }
-            print(error)
-        }
-    }.resume()
+    downloaadBookImage(imgeURL: imageUrlString!)
 }
+    
+    func downloaadBookImage(imgeURL: String){
+        let imageURL = URL(string: imgeURL)
+        
+        URLSession.shared.dataTask(with: imageURL!) { data, response, error in
+            
+            if error == nil && data != nil {
+//                if self.bookInfo?.volumeInfo?.imageLinks?.thumbnail == imgeURL
+                   DispatchQueue.main.async {
+                    self.bookCoverImage.image = UIImage(data: data!)
+                }
+                
+            }
+            else {
+                
+                DispatchQueue.main.async {
+                    self.bookCoverImage.image = UIImage(named: "placeholderImage")
+                }
+                print(error)
+            }
+        }.resume()
+    }
 }
 

@@ -53,10 +53,6 @@ extension DownloaderViewController : URLSessionDownloadDelegate {
         let fileManager = FileManager.default
         let documentsPath = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)[0]
               let destinationPath = documentsPath.appendingPathComponent(url.lastPathComponent)
-//        if fileManager.fileExists(atPath: destinationPath.path){
-//            print("file alreaddy exist")
-//            self.saveFileDelegate?.fetchDownloadedFilePath(path: destinationPath)
-//        }
               print("destinationPath :  \(destinationPath)")
 
               try? FileManager.default.removeItem(at: destinationPath)
@@ -66,8 +62,6 @@ extension DownloaderViewController : URLSessionDownloadDelegate {
                   try FileManager.default.copyItem(at: location, to: destinationPath)
                   self.bookURL = destinationPath
                   self.saveFileDelegate?.fetchDownloadedFilePath(path: destinationPath)
-                  print("self.bookurl : \(self.bookURL)")
-                  print("\(self.bookURL?.deletingLastPathComponent().path)")
 }
         catch {
         print("Error : \(error.localizedDescription)")
