@@ -10,7 +10,11 @@
         <attribute name="progressView" optional="YES" attributeType="String"/>
         <attribute name="publishedDate" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="TimeTracker" representedClassName="TimeTracker" syncable="YES">
+        <attribute name="readingTime" optional="YES" attributeType="String"/>
+    </entity>
     <elements>
         <element name="Book" positionX="-63" positionY="-18" width="128" height="149"/>
+        <element name="TimeTracker" positionX="-63" positionY="45" width="128" height="44"/>
     </elements>
 </model>

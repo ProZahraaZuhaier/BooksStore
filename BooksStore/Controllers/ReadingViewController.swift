@@ -10,44 +10,55 @@ import CoreData
 import FolioReaderKit
 
 class ReadingViewController: UIViewController {
-
+    
     //MARK: - Set Properties & Variables
     @IBOutlet weak var tabelView: UITableView!
     var BooksInfo:[Book] = []
+    var readingTime = "00 : 00 : 00"
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    let folioReader = FolioReader()
+    var bookReader = BookReader()
     //MARK: - View LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         tabelView.delegate = self
         tabelView.dataSource = self
-    
+        
         tabelView.register(UINib(nibName: "TodayReadingTableViewCell", bundle: nil), forCellReuseIdentifier: "readingTimeCell")
         tabelView.register(UINib(nibName: "BookCardTableViewCell", bundle: nil), forCellReuseIdentifier: "BookCardCell")
-
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         // Fetch data from core data
         fetchBooks(context: context)
+        fetchReadingTime(context: context)
     }
 }
 //MARK: - Core Data Methods
 extension ReadingViewController {
-func fetchBooks(context:NSManagedObjectContext){
-    let fetchRequest: NSFetchRequest<Book> = Book.fetchRequest()
-    let results = try! context.fetch(fetchRequest)
-    self.BooksInfo = results
-    
-    tabelView.reloadData()
-}
-    
-
+    func fetchReadingTime(context:NSManagedObjectContext){
+        let fetchRequest: NSFetchRequest<TimeTracker> = TimeTracker.fetchRequest()
+        let results = try! context.fetch(fetchRequest)
+        if results.count == 0 {
+            print("time is 0")
+        }
+        else {
+            self.readingTime = results[0].readingTime!
+            print(self.readingTime)
+        }
+    }
+    func fetchBooks(context:NSManagedObjectContext){
+        let fetchRequest: NSFetchRequest<Book> = Book.fetchRequest()
+        let results = try! context.fetch(fetchRequest)
+        self.BooksInfo = results
+        
+        tabelView.reloadData()
+    }
 }
 //MARK: - Table View Delegate Methods
 extension ReadingViewController : UITableViewDelegate , UITableViewDataSource {
-  
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -57,7 +68,7 @@ extension ReadingViewController : UITableViewDelegate , UITableViewDataSource {
             return 1
         case 1:
             return BooksInfo.count
-       default:
+        default:
             return BooksInfo.count
         }
     }
@@ -65,7 +76,7 @@ extension ReadingViewController : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tabelView.dequeueReusableCell(withIdentifier: "readingTimeCell", for: indexPath) as! TodayReadingTableViewCell
-            cell.time.text = "00:00:00"
+            cell.time.text = self.readingTime
             return cell
         }
         
@@ -76,7 +87,6 @@ extension ReadingViewController : UITableViewDelegate , UITableViewDataSource {
             cell.authorName.text = data.authorName
             cell.publishedDate.text = data.publishedDate
             cell.downloaadBookImage(imgeURL: data.bookImage!)
-            
             return cell
         }
     }
@@ -89,7 +99,6 @@ extension ReadingViewController : UITableViewDelegate , UITableViewDataSource {
         default:
             return ""
         }
-       
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200;
@@ -98,43 +107,8 @@ extension ReadingViewController : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let bookPath = self.BooksInfo[indexPath.row].bookPath!
         print("the bookPath from core data is : \(bookPath)")
-        self.open(epub: bookPath)
-        
+        self.bookReader.open(epub: bookPath, parentViewController: self)
     }
 }
-//MARK: - FolioReader Configuration
-extension  ReadingViewController {
-    private func readerConfiguration(forEpub epub: String) -> FolioReaderConfig {
-        let config = FolioReaderConfig(withIdentifier: epub)
-        
-        config.shouldHideNavigationOnTap = true
-        config.scrollDirection = FolioReaderScrollDirection.vertical
-        config.quoteCustomBackgrounds = []
-        config.nightModeBackground = .black
-        config.menuTextColor = .systemOrange
-        config.tintColor = .systemOrange
 
-        if let image = UIImage(named: "demo-bg") {
-            let customImageQuote = QuoteImage(withImage: image, alpha: 0.6, backgroundColor: UIColor.black)
-            config.quoteCustomBackgrounds.append(customImageQuote)
-        }
-        let textColor = UIColor(red:0.86, green:0.73, blue:0.70, alpha:1.0)
-        let customColor = UIColor(red:0.30, green:0.26, blue:0.20, alpha:1.0)
-        let customQuote = QuoteImage(withColor: customColor , alpha: 1.0, textColor: textColor)
-        config.quoteCustomBackgrounds.append(customQuote)
-        
-        return config
-    }
-    
-    //MARK: - FolioReader Open File method
-    func open(epub: String) {
-        let bookURL =  URL(string: epub)
-        let fileName = bookURL!.deletingPathExtension().lastPathComponent
-        let readerConfiguration = self.readerConfiguration(forEpub: fileName)
-        print("file name is : \(fileName)")
-        DispatchQueue.main.async {
-            self.folioReader.presentReader(parentViewController: self , withEpubPath: epub, andConfig: readerConfiguration, shouldRemoveEpub: false)
-    }
-}
-}
 

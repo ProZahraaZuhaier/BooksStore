@@ -18,32 +18,27 @@ class HomeViewController: UIViewController {
     var BooksInfo = [BookModel]()
     var dataModel = DataModel()
     var endpoint : Route?
-
+    
     //MARK: - View LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-      
         // Do any additional setup after loading the view.
         overrideUserInterfaceStyle = .dark
-//        fetchBooks()
         mainView.alpha = 1
         dataModel.delegate = self
         BooksTableView.delegate = self
         BooksTableView.dataSource = self
         BooksTableView.register(UINib(nibName: "BookCardTableViewCell", bundle: nil), forCellReuseIdentifier: "BookCardCell")
         didSegmentChanged(self.segmentedControl)
-        }
-   //MARK: - Prepare segue
+    }
+    //MARK: - Prepare segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         // Detect the index path the user selected
         let indexPath = BooksTableView.indexPathForSelectedRow
-        
         guard indexPath != nil else {
             // the user hasn't selected anything
             return
         }
-        
         // Get the book
         let bookInfo = BooksInfo[indexPath!.row]
         
@@ -53,13 +48,11 @@ class HomeViewController: UIViewController {
         // pass the book info to the book details view controller
         detailVC.bookInfo = bookInfo
     }
-
     //MARK: - Track segmented control index
     @IBAction func didSegmentChanged(_ sender: UISegmentedControl) {
-        
         self.showIndicatorView()
         switch sender.selectedSegmentIndex {
-        
+            
         case 0:
             self.endpoint = .FictionBooksApi
             
@@ -76,8 +69,6 @@ class HomeViewController: UIViewController {
             self.endpoint = .FictionBooksApi
         }
         dataModel.fetchData(for: self.endpoint!)
-       
-        
     }
 }
 //MARK: - Methods
@@ -112,7 +103,7 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource, UICo
         cell.configureCell(with: data)
         return cell
     }
-   
+    
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -121,13 +112,11 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource, UICo
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "goToDetailVC", sender: self)
-        
     }
 }
 
 //MARK: - implement Protocol Books API Methods
 extension HomeViewController : APIResponseProtocol {
-
     func booksRetrieved(data: [BookModel], for endpoint: Route) {
         self.BooksInfo = data
         self.endpoint = endpoint

@@ -16,7 +16,7 @@ class SearchViewController: UIViewController {
     var BooksInfo = [BookModel]()
     var dataModel = DataModel()
     
-   
+    
     //MARK: - View lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,29 +25,28 @@ class SearchViewController: UIViewController {
         tabelView.dataSource = self
         dataModel.searchDelegate = self
         searchBar.delegate = self
-        
+        // Register Cells
         tabelView.register(UINib(nibName: "SearchResultsTableViewCell", bundle: nil), forCellReuseIdentifier: "searchResultsCell")
         
     }
     //MARK: - Prepare segue
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         
-         // Detect the index path the user selected
-         let indexPath = tabelView.indexPathForSelectedRow
-         
-         guard indexPath != nil else {
-        // the user hasn't selected anything
-             return
-         }
-         // Get the book
-         let bookInfo = BooksInfo[indexPath!.row]
-         
-         // Get a refrence to the book details view contrller
-         let detailVC = segue.destination as! BookPageDetailsViewController
-         
-         // pass the book info to the book details view controller
-         detailVC.bookInfo = bookInfo
-     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Detect the index path the user selected
+        let indexPath = tabelView.indexPathForSelectedRow
+        
+        guard indexPath != nil else {
+            // the user hasn't selected anything
+            return
+        }
+        // Get the book
+        let bookInfo = BooksInfo[indexPath!.row]
+        
+        // Get a refrence to the book details view contrller
+        let detailVC = segue.destination as! BookPageDetailsViewController
+        
+        // pass the book info to the book details view controller
+        detailVC.bookInfo = bookInfo
+    }
 }
 
 //MARK: - Methods
@@ -77,22 +76,22 @@ extension SearchViewController : UISearchBarDelegate {
         }
         
         else {
-        guard let text = searchBar.text else {
-                    return
-                }
-     let trimmedText = text.trimmingCharacters(in: .whitespaces)
-  
+            guard let text = searchBar.text else {
+                return
+            }
+            let trimmedText = text.trimmingCharacters(in: .whitespaces)
+            
             showIndicatorView()
             dataModel.fetchSearchResults(searchKeyword: trimmedText)
-}
+        }
         
     }
-
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         searchBar.resignFirstResponder()
         tabelView.alpha = 0
-    
+        
     }
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         hideIndicatorView()
@@ -111,7 +110,7 @@ extension SearchViewController : SearchAPIProtocol {
 extension SearchViewController : UITableViewDelegate , UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return self.BooksInfo.count
+        return self.BooksInfo.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
