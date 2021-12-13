@@ -16,14 +16,13 @@ class HomeViewController: UIViewController {
     @IBOutlet var mainView: UIView!
     
     var BooksInfo = [BookModel]()
-    var dataModel = DataModel()
-    var endpoint : Route?
+    var dataModel = BooksAPIDataModel()
+    var endpoint : TargetType?
     
     //MARK: - View LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        overrideUserInterfaceStyle = .dark
         mainView.alpha = 1
         dataModel.delegate = self
         BooksTableView.delegate = self
@@ -117,7 +116,7 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource, UICo
 
 //MARK: - implement Protocol Books API Methods
 extension HomeViewController : APIResponseProtocol {
-    func booksRetrieved(data: [BookModel], for endpoint: Route) {
+    func booksRetrieved(data: [BookModel], for endpoint: TargetType) {
         self.BooksInfo = data
         self.endpoint = endpoint
         self.BooksTableView.reloadData()

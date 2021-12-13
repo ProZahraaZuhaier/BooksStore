@@ -1,13 +1,14 @@
 //
-//  Route.swift
+//  TargetType.swift
 //  BooksStore
 //
-//  Created by Zahraa Zuhaier L on 19/10/2021.
+//  Created by Zahraa Zuhaier L on 12/12/2021.
 //
 
 import Foundation
+import Alamofire
 
-enum Route {
+enum TargetType {
   
     static let baseURL = "https://www.googleapis.com/books/v1/volumes?key=AIzaSyAnPJB32xH9U1CKylidXNPfj0s3Ge-UGos&filter=free-ebooks&printType=books&orderBy=newest"
     
@@ -33,6 +34,4 @@ enum Route {
         }
 }
 }
-
-
 

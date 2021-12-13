@@ -14,7 +14,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
     var BooksInfo = [BookModel]()
-    var dataModel = DataModel()
+    var dataModel = BooksAPIDataModel()
     
     
     //MARK: - View lifecycle methods
