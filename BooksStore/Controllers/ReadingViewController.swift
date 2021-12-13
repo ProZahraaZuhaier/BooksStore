@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 import FolioReaderKit
+import RealmSwift
 
 class ReadingViewController: UIViewController {
     
@@ -15,7 +16,6 @@ class ReadingViewController: UIViewController {
     @IBOutlet weak var tabelView: UITableView!
     var BooksInfo:[Book] = []
     var readingTime = "00 : 00 : 00"
-    var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var bookReader = BookReader()
     //MARK: - View LifeCycle Methods
     override func viewDidLoad() {
@@ -31,28 +31,28 @@ class ReadingViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         // Fetch data from core data
-        fetchBooks(context: context)
-        fetchReadingTime(context: context)
+        fetchBooks()
+        fetchReadingTime()
     }
 }
-//MARK: - Core Data Methods
+//MARK: - Realm Methods
 extension ReadingViewController {
-    func fetchReadingTime(context:NSManagedObjectContext){
-        let fetchRequest: NSFetchRequest<TimeTracker> = TimeTracker.fetchRequest()
-        let results = try! context.fetch(fetchRequest)
+    func fetchReadingTime(){
+        let realm = try! Realm()
+        let results = realm.objects(TimeTracker.self).toArray(type: TimeTracker.self)
         if results.count == 0 {
             print("time is 0")
         }
         else {
-            self.readingTime = results[0].readingTime!
+            self.readingTime = results.first?.readingTime ?? self.readingTime
             print(self.readingTime)
         }
     }
-    func fetchBooks(context:NSManagedObjectContext){
-        let fetchRequest: NSFetchRequest<Book> = Book.fetchRequest()
-        let results = try! context.fetch(fetchRequest)
+    
+    func fetchBooks(){
+        let realm = try! Realm()
+        let results = realm.objects(Book.self).toArray(type: Book.self)
         self.BooksInfo = results
-        
         tabelView.reloadData()
     }
 }
@@ -86,7 +86,7 @@ extension ReadingViewController : UITableViewDelegate , UITableViewDataSource {
             cell.bookTitle.text = data.bookTitle
             cell.authorName.text = data.authorName
             cell.publishedDate.text = data.publishedDate
-            cell.downloaadBookImage(imgeURL: data.bookImage!)
+            cell.downloaadBookImage(imgeURL: data.bookImage)
             return cell
         }
     }
@@ -105,7 +105,7 @@ extension ReadingViewController : UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let bookPath = self.BooksInfo[indexPath.row].bookPath!
+        let bookPath = self.BooksInfo[indexPath.row].bookPath
         print("the bookPath from core data is : \(bookPath)")
         self.bookReader.open(epub: bookPath, parentViewController: self)
     }

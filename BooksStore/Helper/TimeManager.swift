@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-import CoreData
+import RealmSwift
 
 class TimeManager {
     //MARK: - Set Variables
@@ -34,7 +34,7 @@ class TimeManager {
         count = count + 1
         let time = secondsToHoursMinutesSeconds(seconds: count)
         let timeString = makeTimeString(hours: time.0, minutes: time.1, seconds: time.2)
-        updateTime(context: context, timeString: timeString)
+        updateTime( timeString: timeString)
     }
  //MARK: - Configure Time Format
     func secondsToHoursMinutesSeconds(seconds: Int) -> (Int, Int, Int)
@@ -55,33 +55,25 @@ class TimeManager {
 }
 //MARK: - Update Core Data
 extension TimeManager {
-    func updateTime(context: NSManagedObjectContext , timeString : String){
-        let fetchRequest: NSFetchRequest<TimeTracker> = TimeTracker.fetchRequest()
-        let results = try! context.fetch(fetchRequest)
-        print("results count is \(results.count)")
+    func updateTime( timeString : String){
+        var time: TimeTracker?
+        let realm = try! Realm()
+        let results = realm.objects(TimeTracker.self)
         if results.count == 0 {
-             let time = TimeTracker(context: context)
-             time.readingTime = timeString
-            do {
-                      try context.save()
-                  }
-                  catch{
-                      print("Unable to update the timer, \(error)")
-                  }
+             time = TimeTracker()
+            try! realm.write({
+                
+                time?.readingTime = timeString
+                realm.add(time!)
+            })
         }
         else {
-            
-            results[0].setValue(timeString, forKey: "readingTime")
-            print(results[0].readingTime)
-           
-            do {
-                      try context.save()
-                  }
-                  catch{
-                      print("Unable to update the timer, \(error)")
-                  }
+            try! realm.write({
+                results.first?.readingTime = timeString
+                
+            })
         }
-      
-    }
 
+
+}
 }

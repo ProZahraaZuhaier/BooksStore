@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RealmSwift
+
 
 class HomeViewController: UIViewController {
     
@@ -21,6 +23,7 @@ class HomeViewController: UIViewController {
     
     //MARK: - View LifeCycle Methods
     override func viewDidLoad() {
+        print(Realm.Configuration.defaultConfiguration.fileURL)
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         mainView.alpha = 1

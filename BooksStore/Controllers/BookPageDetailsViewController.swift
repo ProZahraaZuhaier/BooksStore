@@ -6,9 +6,8 @@
 //
 
 import UIKit
+import RealmSwift
 import FolioReaderKit
-
-import CoreData
 
 class BookPageDetailsViewController: UIViewController, FolioReaderDelegate {
     
@@ -23,14 +22,12 @@ class BookPageDetailsViewController: UIViewController, FolioReaderDelegate {
     var isDownloaded:Bool?
     var downloader = DownloadManager()
     var bookPathTest: String?
-    let context = (UIApplication.shared.delegate as!AppDelegate).persistentContainer.viewContext
     var books:[Book] = []
     var bookReader = BookReader()
     var timeManager = TimeManager()
     //MARK: - View Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        overrideUserInterfaceStyle = .dark
         //MARK: - Trigger Delegates
         tabelView.delegate = self
         tabelView.dataSource = self
@@ -48,7 +45,7 @@ class BookPageDetailsViewController: UIViewController, FolioReaderDelegate {
     //MARK: - viewWillAppear
     override func viewWillAppear(_ animated: Bool) {
         //  check if the book is already downloaded or not to change download button label
-        if check(context: context, bookTitle: bookInfo?.volumeInfo?.title! ?? "") == true {
+        if check( bookTitle: bookInfo?.volumeInfo?.title! ?? "") == true {
             DispatchQueue.main.async {
                 self.downloadButton.setTitle("Open", for: .normal)
             }
@@ -75,9 +72,8 @@ class BookPageDetailsViewController: UIViewController, FolioReaderDelegate {
             self.downloader.downloadBook(from: "https://filesamples.com/samples/ebook/epub/Sway.epub")
         }
         else {
-//            timeManager.timerGetFired(timerCounting: true)
-            // open the book from core data
-            openBook(context: self.context)
+            // open the book from the Realm DB
+            openBook()
         }
     }
 }
@@ -99,20 +95,18 @@ extension BookPageDetailsViewController : DownloadFileProtocol {
 extension BookPageDetailsViewController : SaveFileProtocol{
     func fetchDownloadedFilePath(path: URL) {
         self.bookURL = path
-        // add this book to the core data
-        saveBookInfo(context: self.context)
+        // add this book to the Realm DB 
+        saveBookInfo()
     }
 }
-//MARK: - Core data Methods
+//MARK: - Realm Methods
 extension BookPageDetailsViewController {
     // Check if the book is already exist
-    func check(context:NSManagedObjectContext,bookTitle:String) -> Bool{
+    func check(bookTitle:String) -> Bool{
         var status = false
-        let fetchRequest: NSFetchRequest<Book> = Book.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "bookTitle = %@", bookTitle)
-        let results = try! context.fetch(fetchRequest)
+        let realm = try! Realm()
+        let results = realm.objects(Book.self).filter(NSPredicate(format: "bookTitle = %@", bookTitle))
         for result in results {
-            
             if result.bookTitle == bookInfo?.volumeInfo?.title {
                 status = true
                 return status
@@ -124,35 +118,32 @@ extension BookPageDetailsViewController {
         return status
     }
     
-    // Save Book information to the core data
-    func saveBookInfo(context: NSManagedObjectContext){
-        let book = Book(context: context)
-        if check(context: context , bookTitle: self.bookInfo?.volumeInfo?.title! ?? "") == true {
+    // Save Book information to the Realm DB
+    func saveBookInfo(){
+        let realm = try! Realm()
+        let book = Book()
+        if check(bookTitle: self.bookInfo?.volumeInfo?.title! ?? "") == true {
             print("book is already exist")
-            self.bookPath = book.bookPath!
+            self.bookPath = book.bookPath
         }
         else {
             book.isDownloaded = self.isDownloaded!
-            book.bookPath = self.bookURL?.path
-            book.bookID = self.bookInfo?.volumeInfo?.id
-            book.bookTitle = self.bookInfo?.volumeInfo?.title
+            book.bookPath = self.bookURL?.path ?? ""
+            book.bookID = self.bookInfo?.volumeInfo?.id ?? "UnAvailable"
+            book.bookTitle = self.bookInfo?.volumeInfo?.title! ?? ""
             book.authorName = self.bookInfo?.volumeInfo?.authors?[0] ?? "Unknown author"
-            book.bookImage = self.bookInfo?.volumeInfo?.imageLinks?.thumbnail
-            book.publishedDate = self.bookInfo?.volumeInfo?.publishedDate
+            book.bookImage = self.bookInfo?.volumeInfo?.imageLinks?.thumbnail! ?? ""
+            book.publishedDate = self.bookInfo?.volumeInfo?.publishedDate! ?? "UnKnown"
             
-            do {
-                try context.save()
-            }
-            catch{
-                print("Unable to Save Book, \(error)")
-            }
-            
+            try! realm.write({
+                realm.add(book)
+            })
         }
     }
-    // Open the book from the core data
-    func openBook(context:NSManagedObjectContext){
-        let fetchRequest: NSFetchRequest<Book> = Book.fetchRequest()
-        let results = try! context.fetch(fetchRequest)
+    // Open the book from the the Realm DB
+    func openBook(){
+        let realm = try! Realm()
+        let results = realm.objects(Book.self).toArray(type: Book.self)
         self.books = results
         for result in results {
             if result.bookTitle == self.bookInfo?.volumeInfo?.title {
