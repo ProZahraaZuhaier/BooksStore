@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2nt-QR-qUd">
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Search-->
+        <scene sceneID="7Sq-Zm-Jth">
+            <objects>
+                <viewController id="fsr-jC-HeC" customClass="SearchViewController" customModule="BooksStore" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ukH-el-2r2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="756"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" style="medium" id="uQe-cQ-kJi">
+                                <rect key="frame" x="0.0" y="371" width="428" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Fie-Ae-1It">
+                                <rect key="frame" x="0.0" y="51" width="414" height="671"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="wJ9-dA-Sa0">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wJ9-dA-Sa0" id="V4f-K2-Uow">
+                                            <rect key="frame" x="0.0" y="0.0" width="384.5" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="nJR-mO-3vb" kind="push" identifier="goToDetailVC" id="xDA-Kb-Ygc"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search Books" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QaC-Vf-DHe">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="51"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="WUa-XH-Fgh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Fie-Ae-1It" firstAttribute="top" secondItem="QaC-Vf-DHe" secondAttribute="bottom" id="57K-7u-ClM"/>
+                            <constraint firstItem="Fie-Ae-1It" firstAttribute="leading" secondItem="WUa-XH-Fgh" secondAttribute="leading" id="96J-Dc-rTn"/>
+                            <constraint firstItem="QaC-Vf-DHe" firstAttribute="top" secondItem="WUa-XH-Fgh" secondAttribute="top" id="9Za-V4-ipZ"/>
+                            <constraint firstItem="QaC-Vf-DHe" firstAttribute="trailing" secondItem="WUa-XH-Fgh" secondAttribute="trailing" id="Cbg-tS-Lvi"/>
+                            <constraint firstItem="Fie-Ae-1It" firstAttribute="bottom" secondItem="WUa-XH-Fgh" secondAttribute="bottom" id="FUK-7p-nha"/>
+                            <constraint firstItem="Fie-Ae-1It" firstAttribute="top" secondItem="QaC-Vf-DHe" secondAttribute="bottom" id="Wc6-tw-PYq"/>
+                            <constraint firstItem="uQe-cQ-kJi" firstAttribute="top" secondItem="WUa-XH-Fgh" secondAttribute="top" constant="100" id="iBh-kO-Bdj"/>
+                            <constraint firstItem="QaC-Vf-DHe" firstAttribute="leading" secondItem="WUa-XH-Fgh" secondAttribute="leading" id="q01-XY-WEW"/>
+                            <constraint firstItem="Fie-Ae-1It" firstAttribute="trailing" secondItem="WUa-XH-Fgh" secondAttribute="trailing" id="yDq-dR-kpX"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Search" id="RZ8-MD-P4d"/>
+                    <connections>
+                        <outlet property="searchBar" destination="QaC-Vf-DHe" id="QTY-4o-pvo"/>
+                        <outlet property="spinner" destination="uQe-cQ-kJi" id="ti2-Bd-1Dv"/>
+                        <outlet property="tabelView" destination="Fie-Ae-1It" id="d15-Gz-UaY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jaq-fh-gUU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2084" y="824"/>
+        </scene>
+        <!--BookDetailsUI-->
+        <scene sceneID="Lnn-Q1-P9P">
+            <objects>
+                <viewControllerPlaceholder storyboardName="BookDetailsUI" id="nJR-mO-3vb" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="N1i-r8-yRw"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DYP-0i-2MA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1397" y="824"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="Odf-XQ-Ljd">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2nt-QR-qUd" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Search" image="searchfill" id="ihm-JP-4aT"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" largeTitles="YES" id="6yX-oE-jMT">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" systemColor="systemOrangeColor"/>
+                        <navigationBarAppearance key="standardAppearance">
+                            <barButtonItemAppearance key="backButtonAppearance">
+                                <barButtonItemStateAppearance key="normal">
+                                    <textAttributes key="titleTextAttributes">
+                                        <color key="textColor" systemColor="systemOrangeColor"/>
+                                    </textAttributes>
+                                </barButtonItemStateAppearance>
+                                <barButtonItemStateAppearance key="highlighted"/>
+                                <barButtonItemStateAppearance key="disabled"/>
+                                <barButtonItemStateAppearance key="focused"/>
+                            </barButtonItemAppearance>
+                        </navigationBarAppearance>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="fsr-jC-HeC" kind="relationship" relationship="rootViewController" id="D7B-yI-9Wa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lqC-Hj-3CQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3114" y="824"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="searchfill" width="32" height="32"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

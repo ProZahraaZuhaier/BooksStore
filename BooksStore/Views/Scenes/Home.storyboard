@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fys-IC-3qT">
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Library-->
+        <scene sceneID="BBV-yV-lEm">
+            <objects>
+                <viewController id="EcA-6w-q92" customClass="HomeViewController" customModule="BooksStore" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lWr-nw-ug8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" style="medium" id="J8E-la-zBi">
+                                <rect key="frame" x="0.0" y="436" width="428" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="3Pc-27-zkw">
+                                <rect key="frame" x="0.0" y="230" width="414" height="632"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ibq-6w-OZN">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ibq-6w-OZN" id="4xF-yM-2hj">
+                                            <rect key="frame" x="0.0" y="0.0" width="384.5" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="HyA-hJ-qpQ" kind="push" identifier="goToDetailVC" id="b9H-y6-uC6"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                            </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="cQK-Uh-LLC" userLabel="Segmented Control">
+                                <rect key="frame" x="20" y="160" width="374" height="51"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="HUA-Dg-d12"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Fiction"/>
+                                    <segment title="Romance"/>
+                                    <segment title="Drama"/>
+                                    <segment title="Crime"/>
+                                </segments>
+                                <color key="selectedSegmentTintColor" red="0.99651390309999999" green="0.59552437069999997" blue="0.02251920663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="didSegmentChanged:" destination="EcA-6w-q92" eventType="valueChanged" id="AMz-U7-B8A"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="xOR-d4-7sa"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3Pc-27-zkw" firstAttribute="top" secondItem="cQK-Uh-LLC" secondAttribute="bottom" constant="20" id="9YR-TD-VXj"/>
+                            <constraint firstItem="3Pc-27-zkw" firstAttribute="leading" secondItem="xOR-d4-7sa" secondAttribute="leading" id="Zde-nG-YML"/>
+                            <constraint firstItem="cQK-Uh-LLC" firstAttribute="leading" secondItem="xOR-d4-7sa" secondAttribute="leading" constant="20" id="chb-UZ-VZG"/>
+                            <constraint firstItem="cQK-Uh-LLC" firstAttribute="top" secondItem="xOR-d4-7sa" secondAttribute="top" constant="20" id="h5r-zn-XGy"/>
+                            <constraint firstItem="xOR-d4-7sa" firstAttribute="trailing" secondItem="cQK-Uh-LLC" secondAttribute="trailing" constant="20" id="iRV-pr-WUA"/>
+                            <constraint firstItem="J8E-la-zBi" firstAttribute="top" secondItem="lWr-nw-ug8" secondAttribute="top" constant="500" id="mrW-ib-pz7"/>
+                            <constraint firstItem="3Pc-27-zkw" firstAttribute="bottom" secondItem="xOR-d4-7sa" secondAttribute="bottom" id="q7e-CZ-yMV"/>
+                            <constraint firstItem="xOR-d4-7sa" firstAttribute="trailing" secondItem="3Pc-27-zkw" secondAttribute="trailing" id="ujB-R8-nGT"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Library" id="krD-xa-JSU"/>
+                    <connections>
+                        <outlet property="BooksTableView" destination="3Pc-27-zkw" id="FgG-EI-eSv"/>
+                        <outlet property="mainView" destination="lWr-nw-ug8" id="TPL-eH-AOs"/>
+                        <outlet property="segmentedControl" destination="cQK-Uh-LLC" id="z7X-6O-y3K"/>
+                        <outlet property="spinner" destination="J8E-la-zBi" id="QOc-oK-luh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9qX-oH-p3v" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-5284" y="1054"/>
+        </scene>
+        <!--BookDetailsUI-->
+        <scene sceneID="4m3-7h-rIQ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="BookDetailsUI" id="HyA-hJ-qpQ" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="6AM-b4-lha"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lkl-KO-CK0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4533" y="1053"/>
+        </scene>
+        <!--Library-->
+        <scene sceneID="7bz-3w-5Lm">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fys-IC-3qT" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Library" image="libraryfill" id="8EJ-PA-BwD">
+                        <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="DrK-3r-cSI">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" systemColor="systemOrangeColor"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <navigationBarAppearance key="standardAppearance">
+                            <textAttributes key="titleTextAttributes"/>
+                            <barButtonItemAppearance key="backButtonAppearance">
+                                <barButtonItemStateAppearance key="normal">
+                                    <textAttributes key="titleTextAttributes">
+                                        <color key="textColor" systemColor="systemOrangeColor"/>
+                                    </textAttributes>
+                                </barButtonItemStateAppearance>
+                                <barButtonItemStateAppearance key="highlighted"/>
+                                <barButtonItemStateAppearance key="disabled"/>
+                                <barButtonItemStateAppearance key="focused"/>
+                            </barButtonItemAppearance>
+                        </navigationBarAppearance>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="EcA-6w-q92" kind="relationship" relationship="rootViewController" id="ZpU-iU-zQf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1xz-wQ-J6j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-6139" y="1054"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="libraryfill" width="50" height="50"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

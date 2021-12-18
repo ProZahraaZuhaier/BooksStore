@@ -49,6 +49,10 @@
 		49D1F3EF27556B5F00CA7FAA /* SearchResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D1F3ED27556B5F00CA7FAA /* SearchResultsTableViewCell.swift */; };
 		49D1F3F027556B5F00CA7FAA /* SearchResultsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49D1F3EE27556B5F00CA7FAA /* SearchResultsTableViewCell.xib */; };
 		49D73C27276DEA1C00874FD7 /* RealmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D73C26276DEA1C00874FD7 /* RealmViewModel.swift */; };
+		49D73C29276E58B500874FD7 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49D73C28276E58B500874FD7 /* Home.storyboard */; };
+		49D73C2B276E58DB00874FD7 /* ReadingUI.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49D73C2A276E58DB00874FD7 /* ReadingUI.storyboard */; };
+		49D73C2D276E58EC00874FD7 /* SearchUI.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49D73C2C276E58EC00874FD7 /* SearchUI.storyboard */; };
+		49D73C2F276E591C00874FD7 /* BookDetailsUI.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49D73C2E276E591C00874FD7 /* BookDetailsUI.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +100,10 @@
 		49D1F3ED27556B5F00CA7FAA /* SearchResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewCell.swift; sourceTree = "<group>"; };
 		49D1F3EE27556B5F00CA7FAA /* SearchResultsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultsTableViewCell.xib; sourceTree = "<group>"; };
 		49D73C26276DEA1C00874FD7 /* RealmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmViewModel.swift; sourceTree = "<group>"; };
+		49D73C28276E58B500874FD7 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		49D73C2A276E58DB00874FD7 /* ReadingUI.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReadingUI.storyboard; sourceTree = "<group>"; };
+		49D73C2C276E58EC00874FD7 /* SearchUI.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchUI.storyboard; sourceTree = "<group>"; };
+		49D73C2E276E591C00874FD7 /* BookDetailsUI.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BookDetailsUI.storyboard; sourceTree = "<group>"; };
 		8712F409F138384FED8501B1 /* Pods-BooksStore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BooksStore.release.xcconfig"; path = "Target Support Files/Pods-BooksStore/Pods-BooksStore.release.xcconfig"; sourceTree = "<group>"; };
 		B7F14E8B4696D1FC1FE11E7C /* Pods-BooksStore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BooksStore.debug.xcconfig"; path = "Target Support Files/Pods-BooksStore/Pods-BooksStore.debug.xcconfig"; sourceTree = "<group>"; };
 		D15AEE540A9DC9C0E405EDC9 /* Pods_BooksStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BooksStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -305,6 +313,10 @@
 			isa = PBXGroup;
 			children = (
 				496C88B8271D62A500CB7E17 /* Main.storyboard */,
+				49D73C28276E58B500874FD7 /* Home.storyboard */,
+				49D73C2A276E58DB00874FD7 /* ReadingUI.storyboard */,
+				49D73C2C276E58EC00874FD7 /* SearchUI.storyboard */,
+				49D73C2E276E591C00874FD7 /* BookDetailsUI.storyboard */,
 				496B8E33271C06EC00871DB9 /* LaunchScreen.storyboard */,
 			);
 			path = Scenes;
@@ -379,8 +391,11 @@
 			files = (
 				496B8E35271C06EC00871DB9 /* LaunchScreen.storyboard in Resources */,
 				499F09852756D5B300F12156 /* TodayReadingTableViewCell.xib in Resources */,
+				49D73C29276E58B500874FD7 /* Home.storyboard in Resources */,
 				49933898275EB5900021F113 /* Assets.xcassets.xcassets in Resources */,
 				49D1F3F027556B5F00CA7FAA /* SearchResultsTableViewCell.xib in Resources */,
+				49D73C2D276E58EC00874FD7 /* SearchUI.storyboard in Resources */,
+				49D73C2B276E58DB00874FD7 /* ReadingUI.storyboard in Resources */,
 				4998AF41275AC6DC0036ECCE /* BookDescriptionCell.xib in Resources */,
 				4998AF35275AC4240036ECCE /* BookTitleCell.xib in Resources */,
 				4998AF3D275AC5CA0036ECCE /* BookCategoriesCell.xib in Resources */,
@@ -388,6 +403,7 @@
 				4998AF31275AC2870036ECCE /* BookInfoCell.xib in Resources */,
 				4998AF2D275ABCE80036ECCE /* BookPosterCell.xib in Resources */,
 				496C88B9271D62A500CB7E17 /* Main.storyboard in Resources */,
+				49D73C2F276E591C00874FD7 /* BookDetailsUI.storyboard in Resources */,
 				4910757B2756360D00515B20 /* BookCardTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

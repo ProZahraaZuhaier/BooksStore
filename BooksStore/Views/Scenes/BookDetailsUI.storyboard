@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="O7T-4m-hnQ">
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Book Page Details View Controller-->
+        <scene sceneID="ptH-zy-P6p">
+            <objects>
+                <viewController id="O7T-4m-hnQ" customClass="BookPageDetailsViewController" customModule="BooksStore" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yh0-Xj-TPR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="4rg-jo-plB">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="782"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r1a-4P-hu8">
+                                <rect key="frame" x="20" y="802" width="374" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="P1h-MK-dtW"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Download" subtitle="" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" type="system" weight="black" pointSize="24"/>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseBackgroundColor" red="0.99651390309999999" green="0.60638666149999998" blue="0.02251920663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="downloadButtonTapped:" destination="O7T-4m-hnQ" eventType="touchUpInside" id="6kO-zQ-ihC"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="s7g-9m-2MH">
+                                <rect key="frame" x="197" y="812" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="c22-P6-ui4"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="4rg-jo-plB" firstAttribute="top" secondItem="yh0-Xj-TPR" secondAttribute="top" id="1hv-ld-b04"/>
+                            <constraint firstItem="4rg-jo-plB" firstAttribute="leading" secondItem="c22-P6-ui4" secondAttribute="leading" id="8Tq-fG-V58"/>
+                            <constraint firstItem="r1a-4P-hu8" firstAttribute="top" secondItem="4rg-jo-plB" secondAttribute="bottom" constant="20" id="8uu-CI-HSe"/>
+                            <constraint firstItem="s7g-9m-2MH" firstAttribute="centerX" secondItem="r1a-4P-hu8" secondAttribute="centerX" id="957-cn-eHl"/>
+                            <constraint firstItem="c22-P6-ui4" firstAttribute="trailing" secondItem="4rg-jo-plB" secondAttribute="trailing" id="Aa6-dl-p8s"/>
+                            <constraint firstItem="c22-P6-ui4" firstAttribute="trailing" secondItem="r1a-4P-hu8" secondAttribute="trailing" constant="20" id="YUc-gh-UDP"/>
+                            <constraint firstItem="r1a-4P-hu8" firstAttribute="leading" secondItem="c22-P6-ui4" secondAttribute="leading" constant="20" id="dL2-mI-1MW"/>
+                            <constraint firstItem="c22-P6-ui4" firstAttribute="bottom" secondItem="r1a-4P-hu8" secondAttribute="bottom" constant="20" id="n1c-fA-OwR"/>
+                            <constraint firstItem="s7g-9m-2MH" firstAttribute="centerY" secondItem="r1a-4P-hu8" secondAttribute="centerY" id="own-NP-lhO"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="h5w-Ze-5oH">
+                        <barButtonItem key="backBarButtonItem" title="back" id="oVb-14-FmE"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="downloadButton" destination="r1a-4P-hu8" id="CB0-rK-zO5"/>
+                        <outlet property="spinner" destination="s7g-9m-2MH" id="Mpd-av-ibT"/>
+                        <outlet property="tabelView" destination="4rg-jo-plB" id="Bgi-EX-dZe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gYe-1p-k02" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4714" y="2761"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
