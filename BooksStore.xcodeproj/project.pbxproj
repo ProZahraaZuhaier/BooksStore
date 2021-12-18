@@ -120,14 +120,24 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		496A4A2F2767A0000097DBD9 /* Data */ = {
+		492043D1276DDDF30029AA42 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				49C7058F2722ADE8009F5DED /* HomeViewController.swift */,
+				494ABC4227430A31008FDF9A /* BookPageDetailsViewController.swift */,
+				49552F1427575C590095D916 /* ReadingViewController.swift */,
+				493345C52752D43B002E31AA /* SearchViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		496A4A2F2767A0000097DBD9 /* RealmDB Models */ = {
 			isa = PBXGroup;
 			children = (
 				496A4A2A27679D390097DBD9 /* Book.swift */,
 				496A4A2C27679D720097DBD9 /* TimeTracker.swift */,
 			);
-			name = Data;
-			path = "New Group/Data";
+			path = "RealmDB Models";
 			sourceTree = "<group>";
 		};
 		496B8E1C271C06EB00871DB9 = {
@@ -158,8 +168,7 @@
 				49F70F7A271CC32A00314A99 /* Networking */,
 				49F70F7B271CC33600314A99 /* Models */,
 				49F70F7C271CC33F00314A99 /* Views */,
-				49F70F7D271CC34600314A99 /* Controllers */,
-				496A4A2F2767A0000097DBD9 /* Data */,
+				49D73C25276DE59C00874FD7 /* ViewModel */,
 				4998AF29275AA3030036ECCE /* Helper */,
 			);
 			path = BooksStore;
@@ -168,12 +177,73 @@
 		497F933A27423F8700292B94 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				49AAD7CB276B578500F3A26F /* Home */,
+				49AAD7CE276B57F400F3A26F /* BookDetails */,
+				49AAD7CD276B579600F3A26F /* Reading */,
+				49AAD7CC276B578F00F3A26F /* Search */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		499661222766621D00F6063C /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				499661232766623F00F6063C /* TargetType.swift */,
+				494604D8271F54660024BE51 /* Method.swift */,
+				493B5BA9271FF8D7007EC11F /* ErrorHandler.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		499661272766631800F6063C /* NetworkServices */ = {
+			isa = PBXGroup;
+			children = (
+				49966125276662D000F6063C /* NetworkService.swift */,
+			);
+			path = NetworkServices;
+			sourceTree = "<group>";
+		};
+		4998AF29275AA3030036ECCE /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				498B6B29275E38A0007A36AD /* BookReader.swift */,
+				49A7624A2743E90000A7E2A8 /* DownloadManager.swift */,
+				49BFBA64275CAB93001FD76F /* TimeManager.swift */,
+				497E80472723EBDA00F3A9DA /* CardView.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		49AAD7CB276B578500F3A26F /* Home */ = {
+			isa = PBXGroup;
+			children = (
 				491075782756360D00515B20 /* BookCardTableViewCell.swift */,
 				491075792756360D00515B20 /* BookCardTableViewCell.xib */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		49AAD7CC276B578F00F3A26F /* Search */ = {
+			isa = PBXGroup;
+			children = (
 				49D1F3ED27556B5F00CA7FAA /* SearchResultsTableViewCell.swift */,
 				49D1F3EE27556B5F00CA7FAA /* SearchResultsTableViewCell.xib */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		49AAD7CD276B579600F3A26F /* Reading */ = {
+			isa = PBXGroup;
+			children = (
 				499F09822756D5B300F12156 /* TodayReadingTableViewCell.swift */,
 				499F09832756D5B300F12156 /* TodayReadingTableViewCell.xib */,
+			);
+			path = Reading;
+			sourceTree = "<group>";
+		};
+		49AAD7CE276B57F400F3A26F /* BookDetails */ = {
+			isa = PBXGroup;
+			children = (
 				4998AF2A275ABCE80036ECCE /* BookPosterCell.swift */,
 				4998AF2B275ABCE80036ECCE /* BookPosterCell.xib */,
 				4998AF2E275AC2870036ECCE /* BookInfoCell.swift */,
@@ -187,43 +257,21 @@
 				4998AF3E275AC6DC0036ECCE /* BookDescriptionCell.swift */,
 				4998AF3F275AC6DC0036ECCE /* BookDescriptionCell.xib */,
 			);
-			path = Cells;
+			path = BookDetails;
 			sourceTree = "<group>";
 		};
-		499661222766621D00F6063C /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				499661232766623F00F6063C /* TargetType.swift */,
-				494604D8271F54660024BE51 /* Method.swift */,
-				494604CD271F400F0024BE51 /* ApiResponse.swift */,
-				493B5BA9271FF8D7007EC11F /* ErrorHandler.swift */,
-			);
-			path = Base;
-			sourceTree = "<group>";
-		};
-		499661272766631800F6063C /* Books */ = {
+		49D73C25276DE59C00874FD7 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				499661282766634B00F6063C /* BooksAPIDataModel.swift */,
-				49966125276662D000F6063C /* NetworkService.swift */,
 			);
-			path = Books;
-			sourceTree = "<group>";
-		};
-		4998AF29275AA3030036ECCE /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-				49A7624A2743E90000A7E2A8 /* DownloadManager.swift */,
-				49BFBA64275CAB93001FD76F /* TimeManager.swift */,
-				498B6B29275E38A0007A36AD /* BookReader.swift */,
-			);
-			path = Helper;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		49F70F7A271CC32A00314A99 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				499661272766631800F6063C /* Books */,
+				499661272766631800F6063C /* NetworkServices */,
 				499661222766621D00F6063C /* Base */,
 			);
 			path = Networking;
@@ -233,6 +281,8 @@
 			isa = PBXGroup;
 			children = (
 				494604CB271F3C430024BE51 /* BookModel.swift */,
+				494604CD271F400F0024BE51 /* ApiResponse.swift */,
+				496A4A2F2767A0000097DBD9 /* RealmDB Models */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -240,30 +290,19 @@
 		49F70F7C271CC33F00314A99 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				497E80472723EBDA00F3A9DA /* CardView.swift */,
-				497F933A27423F8700292B94 /* Cells */,
 				49F70F7E271CC39C00314A99 /* Scenes */,
-				496B8E33271C06EC00871DB9 /* LaunchScreen.storyboard */,
+				497F933A27423F8700292B94 /* Cells */,
+				492043D1276DDDF30029AA42 /* Controllers */,
 				49933897275EB58F0021F113 /* Assets.xcassets.xcassets */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		49F70F7D271CC34600314A99 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				49C7058F2722ADE8009F5DED /* HomeViewController.swift */,
-				493345C52752D43B002E31AA /* SearchViewController.swift */,
-				49552F1427575C590095D916 /* ReadingViewController.swift */,
-				494ABC4227430A31008FDF9A /* BookPageDetailsViewController.swift */,
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		49F70F7E271CC39C00314A99 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
 				496C88B8271D62A500CB7E17 /* Main.storyboard */,
+				496B8E33271C06EC00871DB9 /* LaunchScreen.storyboard */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";

@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import CoreData
 
 // MARK: - Item
 struct  BookModel : Codable  {
