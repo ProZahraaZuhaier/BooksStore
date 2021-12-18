@@ -17,14 +17,10 @@ class BookPageDetailsViewController: UIViewController, FolioReaderDelegate {
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     var bookInfo: BookModel?
-    var bookPath: String?
     var bookURL : URL?
-    var isDownloaded:Bool?
+    var isDownloaded:Bool = false
     var downloader = DownloadManager()
-    var bookPathTest: String?
-    var books:[Book] = []
-    var bookReader = BookReader()
-    var timeManager = TimeManager()
+    var realmViewModel = RealmViewModel()
     //MARK: - View Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,11 +37,10 @@ class BookPageDetailsViewController: UIViewController, FolioReaderDelegate {
         tabelView.register(UINib(nibName: "BookCategoriesCell", bundle: nil), forCellReuseIdentifier: "BookCategoriesCell")
         tabelView.register(UINib(nibName: "BookDescriptionCell", bundle: nil), forCellReuseIdentifier: "BookDescriptionCell")
     }
-    
     //MARK: - viewWillAppear
     override func viewWillAppear(_ animated: Bool) {
         //  check if the book is already downloaded or not to change download button label
-        if check( bookTitle: bookInfo?.volumeInfo?.title! ?? "") == true {
+        if self.realmViewModel.check(bookData: self.bookInfo!) == true {
             DispatchQueue.main.async {
                 self.downloadButton.setTitle("Open", for: .normal)
             }
@@ -55,33 +50,26 @@ class BookPageDetailsViewController: UIViewController, FolioReaderDelegate {
                 self.downloadButton.setTitle("Download", for: .normal)
             }
         }
-        
-        
     }
     //MARK: - Methods
     @IBAction func downloadButtonTapped(_ sender: Any) {
         
         if downloadButton.titleLabel?.text == "Download"{
-            //            let bookURL = self.bookInfo?.volumeInfo?.previewLink
-            DispatchQueue.main.async {
-                self.downloadButton.isEnabled = false
-                self.spinner.alpha = 1
-                self.spinner.startAnimating()
-            }
+            //let bookURL = self.bookInfo?.volumeInfo?.previewLink
+            self.checkDownloadButtonState(state: false)
+            
             // test url
             self.downloader.downloadBook(from: "https://filesamples.com/samples/ebook/epub/Sway.epub")
         }
         else {
             // open the book from the Realm DB
-            openBook()
+            self.realmViewModel.openBook(bookData: self.bookInfo!, parentViewController: self)
         }
     }
-}
-//MARK: - Implement download Protocol methods
-extension BookPageDetailsViewController : DownloadFileProtocol {
-    func didFileDownloaded(status: Bool) {
-        self.isDownloaded = status
-        if status == true {
+    
+    // - Handle download button state
+    func checkDownloadButtonState(state: Bool) {
+        if state == true {
             DispatchQueue.main.async {
                 self.downloadButton.setTitle("Open", for: .normal)
                 self.downloadButton.isEnabled = true
@@ -89,69 +77,28 @@ extension BookPageDetailsViewController : DownloadFileProtocol {
                 self.spinner.stopAnimating()
             }
         }
+        else {
+            DispatchQueue.main.async {
+                self.downloadButton.isEnabled = false
+                self.spinner.alpha = 1
+                self.spinner.startAnimating()
+            }
+        }
+    }
+}
+//MARK: - Implement download Protocol methods
+extension BookPageDetailsViewController : DownloadFileProtocol {
+    func didFileDownloaded(status: Bool) {
+        self.isDownloaded = status
+        self.checkDownloadButtonState(state: self.isDownloaded)
     }
 }
 //MARK: - Implement save file Protocol methods
 extension BookPageDetailsViewController : SaveFileProtocol{
     func fetchDownloadedFilePath(path: URL) {
         self.bookURL = path
-        // add this book to the Realm DB 
-        saveBookInfo()
-    }
-}
-//MARK: - Realm Methods
-extension BookPageDetailsViewController {
-    // Check if the book is already exist
-    func check(bookTitle:String) -> Bool{
-        var status = false
-        let realm = try! Realm()
-        let results = realm.objects(Book.self).filter(NSPredicate(format: "bookTitle = %@", bookTitle))
-        for result in results {
-            if result.bookTitle == bookInfo?.volumeInfo?.title {
-                status = true
-                return status
-            }
-            else {
-                return status
-            }
-        }
-        return status
-    }
-    
-    // Save Book information to the Realm DB
-    func saveBookInfo(){
-        let realm = try! Realm()
-        let book = Book()
-        if check(bookTitle: self.bookInfo?.volumeInfo?.title! ?? "") == true {
-            print("book is already exist")
-            self.bookPath = book.bookPath
-        }
-        else {
-            book.isDownloaded = self.isDownloaded!
-            book.bookPath = self.bookURL?.path ?? ""
-            book.bookID = self.bookInfo?.volumeInfo?.id ?? "UnAvailable"
-            book.bookTitle = self.bookInfo?.volumeInfo?.title! ?? ""
-            book.authorName = self.bookInfo?.volumeInfo?.authors?[0] ?? "Unknown author"
-            book.bookImage = self.bookInfo?.volumeInfo?.imageLinks?.thumbnail! ?? ""
-            book.publishedDate = self.bookInfo?.volumeInfo?.publishedDate! ?? "UnKnown"
-            
-            try! realm.write({
-                realm.add(book)
-            })
-        }
-    }
-    // Open the book from the the Realm DB
-    func openBook(){
-        let realm = try! Realm()
-        let results = realm.objects(Book.self).toArray(type: Book.self)
-        self.books = results
-        for result in results {
-            if result.bookTitle == self.bookInfo?.volumeInfo?.title {
-                self.bookPath = result.bookPath
-                self.bookReader.open(epub: bookPath!, parentViewController: self)
-            }
-            
-        }
+        // add this book to the Realm DB
+        realmViewModel.saveBookInfo(downloadState: self.isDownloaded, bookData: self.bookInfo!, bookURL: path)
     }
 }
 //MARK: - Table View Delegate Methods

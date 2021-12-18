@@ -29,9 +29,8 @@ class BookCardTableViewCell: UITableViewCell {
         overrideUserInterfaceStyle = .dark
     }
 //MARK: - Methods
-func configureCell (with data: BookModel) {
+func configureCell(with data: BookModel) {
     self.bookInfo = data
-    
     DispatchQueue.main.async {
         self.bookTitle.text = self.bookInfo!.volumeInfo?.title  ?? "Unknown title"
         self.authorName.text = self.bookInfo!.volumeInfo?.authors?[0] ?? "Unknown author"
@@ -45,25 +44,33 @@ func configureCell (with data: BookModel) {
     let imageUrlString = self.bookInfo!.volumeInfo?.imageLinks?.thumbnail
     downloaadBookImage(imgeURL: imageUrlString!)
 }
-    
+    // configure cell for data on DB
+    func setupCell(with data: Book){
+        DispatchQueue.main.async {
+            self.bookTitle.text = data.bookTitle
+            self.authorName.text = data.authorName
+            self.publishedDate.text = data.publishedDate
+            self.downloaadBookImage(imgeURL: data.bookImage)
+        }
+   }
+}
+//MARK: - Download Book Image Method
+extension BookCardTableViewCell {
     func downloaadBookImage(imgeURL: String){
         let imageURL = URL(string: imgeURL)
-        
         URLSession.shared.dataTask(with: imageURL!) { data, response, error in
             
             if error == nil && data != nil {
-//                if self.bookInfo?.volumeInfo?.imageLinks?.thumbnail == imgeURL
                    DispatchQueue.main.async {
                     self.bookCoverImage.image = UIImage(data: data!)
                 }
-                
             }
             else {
                 
                 DispatchQueue.main.async {
                     self.bookCoverImage.image = UIImage(named: "placeholderImage")
                 }
-                print(error)
+                print(ErrorHandler.invalidURL)
             }
         }.resume()
     }

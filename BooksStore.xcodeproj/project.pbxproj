@@ -48,6 +48,7 @@
 		49C705902722ADE8009F5DED /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C7058F2722ADE8009F5DED /* HomeViewController.swift */; };
 		49D1F3EF27556B5F00CA7FAA /* SearchResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D1F3ED27556B5F00CA7FAA /* SearchResultsTableViewCell.swift */; };
 		49D1F3F027556B5F00CA7FAA /* SearchResultsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49D1F3EE27556B5F00CA7FAA /* SearchResultsTableViewCell.xib */; };
+		49D73C27276DEA1C00874FD7 /* RealmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D73C26276DEA1C00874FD7 /* RealmViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,7 @@
 		49C7058F2722ADE8009F5DED /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		49D1F3ED27556B5F00CA7FAA /* SearchResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewCell.swift; sourceTree = "<group>"; };
 		49D1F3EE27556B5F00CA7FAA /* SearchResultsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultsTableViewCell.xib; sourceTree = "<group>"; };
+		49D73C26276DEA1C00874FD7 /* RealmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmViewModel.swift; sourceTree = "<group>"; };
 		8712F409F138384FED8501B1 /* Pods-BooksStore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BooksStore.release.xcconfig"; path = "Target Support Files/Pods-BooksStore/Pods-BooksStore.release.xcconfig"; sourceTree = "<group>"; };
 		B7F14E8B4696D1FC1FE11E7C /* Pods-BooksStore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BooksStore.debug.xcconfig"; path = "Target Support Files/Pods-BooksStore/Pods-BooksStore.debug.xcconfig"; sourceTree = "<group>"; };
 		D15AEE540A9DC9C0E405EDC9 /* Pods_BooksStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BooksStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -264,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				499661282766634B00F6063C /* BooksAPIDataModel.swift */,
+				49D73C26276DEA1C00874FD7 /* RealmViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				494ABC4327430A31008FDF9A /* BookPageDetailsViewController.swift in Sources */,
 				4998AF34275AC4240036ECCE /* BookTitleCell.swift in Sources */,
 				4910757A2756360D00515B20 /* BookCardTableViewCell.swift in Sources */,
+				49D73C27276DEA1C00874FD7 /* RealmViewModel.swift in Sources */,
 				49D1F3EF27556B5F00CA7FAA /* SearchResultsTableViewCell.swift in Sources */,
 				4998AF38275AC51B0036ECCE /* AuthorNameCell.swift in Sources */,
 				497E80482723EBDA00F3A9DA /* CardView.swift in Sources */,

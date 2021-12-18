@@ -17,6 +17,7 @@ class ReadingViewController: UIViewController {
     var BooksInfo:[Book] = []
     var readingTime = "00 : 00 : 00"
     var bookReader = BookReader()
+    var realmViewModel = RealmViewModel()
     //MARK: - View LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,35 +25,27 @@ class ReadingViewController: UIViewController {
         // Do any additional setup after loading the view.
         tabelView.delegate = self
         tabelView.dataSource = self
+        realmViewModel.booksDelegate = self
         
         tabelView.register(UINib(nibName: "TodayReadingTableViewCell", bundle: nil), forCellReuseIdentifier: "readingTimeCell")
         tabelView.register(UINib(nibName: "BookCardTableViewCell", bundle: nil), forCellReuseIdentifier: "BookCardCell")
         
     }
     override func viewWillAppear(_ animated: Bool) {
-        // Fetch data from core data
-        fetchBooks()
-        fetchReadingTime()
+        // Fetch data from Realm DB
+        self.realmViewModel.fetchBooks()
+        self.realmViewModel.fetchReadingTime()
+        
     }
 }
-//MARK: - Realm Methods
-extension ReadingViewController {
-    func fetchReadingTime(){
-        let realm = try! Realm()
-        let results = realm.objects(TimeTracker.self).toArray(type: TimeTracker.self)
-        if results.count == 0 {
-            print("time is 0")
-        }
-        else {
-            self.readingTime = results.first?.readingTime ?? self.readingTime
-            print(self.readingTime)
-        }
+//MARK: - Fetch Data from RealmDB
+extension ReadingViewController : RealmDBProtocol{
+    func fetchReadingTime(readingTime: String) {
+        self.readingTime = readingTime
     }
     
-    func fetchBooks(){
-        let realm = try! Realm()
-        let results = realm.objects(Book.self).toArray(type: Book.self)
-        self.BooksInfo = results
+    func fetchBooks(books: [Book]) {
+        self.BooksInfo = books
         tabelView.reloadData()
     }
 }
@@ -83,10 +76,7 @@ extension ReadingViewController : UITableViewDelegate , UITableViewDataSource {
         else {
             let cell = tabelView.dequeueReusableCell(withIdentifier: "BookCardCell", for: indexPath) as! BookCardTableViewCell
             let data = BooksInfo[indexPath.row]
-            cell.bookTitle.text = data.bookTitle
-            cell.authorName.text = data.authorName
-            cell.publishedDate.text = data.publishedDate
-            cell.downloaadBookImage(imgeURL: data.bookImage)
+            cell.setupCell(with: data)
             return cell
         }
     }
