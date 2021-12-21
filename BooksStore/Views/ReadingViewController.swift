@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import CoreData
-import FolioReaderKit
 import RealmSwift
 
 class ReadingViewController: UIViewController {

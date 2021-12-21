@@ -7,9 +7,8 @@
 
 import UIKit
 import RealmSwift
-import FolioReaderKit
 
-class BookPageDetailsViewController: UIViewController, FolioReaderDelegate {
+class BookPageDetailsViewController: UIViewController {
     
     //MARK: - Set Properties & Variables
     @IBOutlet weak var tabelView: UITableView!
@@ -24,6 +23,7 @@ class BookPageDetailsViewController: UIViewController, FolioReaderDelegate {
     //MARK: - View Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //MARK: - Trigger Delegates
         tabelView.delegate = self
         tabelView.dataSource = self
@@ -36,6 +36,7 @@ class BookPageDetailsViewController: UIViewController, FolioReaderDelegate {
         tabelView.register(UINib(nibName: "AuthorNameCell", bundle: nil), forCellReuseIdentifier: "AuthorNameCell")
         tabelView.register(UINib(nibName: "BookCategoriesCell", bundle: nil), forCellReuseIdentifier: "BookCategoriesCell")
         tabelView.register(UINib(nibName: "BookDescriptionCell", bundle: nil), forCellReuseIdentifier: "BookDescriptionCell")
+
     }
     //MARK: - viewWillAppear
     override func viewWillAppear(_ animated: Bool) {
@@ -148,11 +149,16 @@ extension BookPageDetailsViewController : UITableViewDelegate , UITableViewDataS
         }
         
     }
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.section {
-            
-        default:
-            return UITableView.automaticDimension
-        }
+       return UITableView.automaticDimension
+//        switch indexPath.section {
+//
+//        default:
+//
+//            return UITableView.automaticDimension
+//        }
     }
 }
