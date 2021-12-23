@@ -154,11 +154,5 @@ extension BookPageDetailsViewController : UITableViewDelegate , UITableViewDataS
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
        return UITableView.automaticDimension
-//        switch indexPath.section {
-//
-//        default:
-//
-//            return UITableView.automaticDimension
-//        }
     }
 }

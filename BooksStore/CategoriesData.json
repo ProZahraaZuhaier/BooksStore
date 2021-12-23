@@ -1,0 +1,29 @@
+[
+       {
+      "categoryName": "Drama",
+      "CategoryImage": "drama"
+       } ,
+       
+       {
+      "categoryName": "War",
+      "CategoryImage": "12345"} ,
+       {
+      "categoryName": "Romance",
+      "CategoryImage": "romance"},
+       {
+      "categoryName": "History",
+      "CategoryImage": "history"},
+       {
+      "categoryName": "Family",
+      "CategoryImage": "family"},
+       {
+      "categoryName": "Technology",
+      "CategoryImage": "technology"},
+       {
+      "categoryName": "Crime",
+      "CategoryImage": "crime"},
+       {
+      "categoryName": "Adventure",
+      "CategoryImage": "Adventure"}
+]
+ 

@@ -16,7 +16,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7J1-t2-sj2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4818" y="176"/>
+            <point key="canvasLocation" x="-4750" y="176"/>
         </scene>
         <!--ReadingUI-->
         <scene sceneID="qa8-4a-iJE">
@@ -26,7 +26,17 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SA0-BE-1jP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4358" y="176"/>
+            <point key="canvasLocation" x="-4473" y="176"/>
+        </scene>
+        <!--Categories-->
+        <scene sceneID="Nw3-na-6dw">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Categories" id="K9u-W6-cnf" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="saF-Rr-6PH"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xrb-dQ-TZ3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4224" y="176"/>
         </scene>
         <!--SearchUI-->
         <scene sceneID="yGk-hN-QXD">
@@ -36,7 +46,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="azV-Pn-5Yo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3880" y="176"/>
+            <point key="canvasLocation" x="-3999" y="176"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="GLU-Hc-ADY">
@@ -53,6 +63,7 @@
                     <connections>
                         <segue destination="gZ1-1l-fD1" kind="relationship" relationship="viewControllers" id="xF4-VD-ZK5"/>
                         <segue destination="eck-6v-XUl" kind="relationship" relationship="viewControllers" id="PWl-ae-3nE"/>
+                        <segue destination="K9u-W6-cnf" kind="relationship" relationship="viewControllers" id="DSa-qK-WeJ"/>
                         <segue destination="uuM-Z5-rij" kind="relationship" relationship="viewControllers" id="gGK-p4-5O0"/>
                     </connections>
                 </tabBarController>
