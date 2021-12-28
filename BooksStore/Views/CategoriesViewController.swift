@@ -17,27 +17,27 @@ class CategoriesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Register Cells
-        collectionView.register(UINib(nibName: "CategoriesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
-        
         // Trigger delegates
+        categoriesData.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
-        categoriesData.delegate = self
+        
+        
+        //Register Cells
+        collectionView.register(UINib(nibName: "CategoriesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
         
         // fetch categories
         categoriesData.fetchCategories()
     }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+    //MARK: - Prepare segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToShowCategoriesVC" {
+            let showCategoriesVC = segue.destination as! ShowCategoriesViewController
+            let indexPath = self.collectionView.indexPathsForSelectedItems?.first
+            let selectedCategory = self.data?[indexPath!.row]
+            showCategoriesVC.category = selectedCategory
+        }
+    }
 }
 //MARK: - Fetch Categories from Categories Protocol
 extension CategoriesViewController : CategoriesProtocol {
@@ -56,6 +56,9 @@ extension CategoriesViewController : UICollectionViewDelegate , UICollectionView
         let data = self.data?[indexPath.row]
         cell.configureCell(data: data!)
         return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "goToShowCategoriesVC", sender: self)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

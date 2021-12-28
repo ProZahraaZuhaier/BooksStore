@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="weh-Kb-nUJ">
-                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
+                            <collectionView clipsSubviews="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="weh-Kb-nUJ">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="n6H-pU-Q78">
                                     <size key="itemSize" width="194" height="269"/>
@@ -26,7 +27,19 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
-                                <cells/>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="1ia-1L-9cx">
+                                        <rect key="frame" x="0.0" y="0.0" width="194" height="269"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Ue8-C9-ucT">
+                                            <rect key="frame" x="0.0" y="0.0" width="194" height="269"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <segue destination="qIj-8b-YNG" kind="push" identifier="goToShowCategoriesVC" id="QIm-2e-E9U"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ce7-df-99Q"/>
@@ -47,17 +60,28 @@
             </objects>
             <point key="canvasLocation" x="-2350.7246376811595" y="-231.69642857142856"/>
         </scene>
-        <!--Catigories-->
+        <!--ShowCategories-->
+        <scene sceneID="9WZ-dx-EMF">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ShowCategories" id="qIj-8b-YNG" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="nn4-yF-MH9"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8IT-HO-YPe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1485" y="-232"/>
+        </scene>
+        <!--Categories-->
         <scene sceneID="aXs-9g-PXT">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7u9-q5-7fT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Catigories" image="grid" id="1VH-af-j8R">
+                    <tabBarItem key="tabBarItem" title="Categories" image="grid" id="1VH-af-j8R">
                         <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="rcB-sC-hr8">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" systemColor="systemOrangeColor"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -73,6 +97,9 @@
         <image name="grid" width="42.5" height="42.5"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

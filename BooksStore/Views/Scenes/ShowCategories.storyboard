@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1uI-Us-E4z">
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Show Categories View Controller-->
+        <scene sceneID="JkI-RN-82s">
+            <objects>
+                <viewController id="1uI-Us-E4z" customClass="ShowCategoriesViewController" customModule="BooksStore" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HYN-9w-O3R">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="bAB-O3-d8J">
+                                <rect key="frame" x="197" y="443" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <collectionView clipsSubviews="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4dt-mF-wyu">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fyC-rx-uCQ">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="aGd-We-bVU">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="qLo-gf-azf">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <segue destination="4WD-5b-21M" kind="push" identifier="goToDetailVC" id="G83-Ch-Syd"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="OVB-1V-jOh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="bAB-O3-d8J" firstAttribute="centerX" secondItem="OVB-1V-jOh" secondAttribute="centerX" id="IUB-ic-wNs"/>
+                            <constraint firstItem="OVB-1V-jOh" firstAttribute="bottom" secondItem="4dt-mF-wyu" secondAttribute="bottom" id="MSN-Ke-PTW"/>
+                            <constraint firstItem="4dt-mF-wyu" firstAttribute="leading" secondItem="OVB-1V-jOh" secondAttribute="leading" id="Rqt-48-GAJ"/>
+                            <constraint firstItem="OVB-1V-jOh" firstAttribute="trailing" secondItem="4dt-mF-wyu" secondAttribute="trailing" id="S8g-Rp-thQ"/>
+                            <constraint firstItem="bAB-O3-d8J" firstAttribute="centerY" secondItem="OVB-1V-jOh" secondAttribute="centerY" id="hRR-fE-dH2"/>
+                            <constraint firstItem="4dt-mF-wyu" firstAttribute="top" secondItem="OVB-1V-jOh" secondAttribute="top" id="te2-bw-GEH"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="10Q-bF-wyb"/>
+                    <connections>
+                        <outlet property="collectionView" destination="4dt-mF-wyu" id="gLC-ZS-EbR"/>
+                        <outlet property="spinner" destination="bAB-O3-d8J" id="7cs-XJ-iYC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="avF-kS-k1a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="598.55072463768124" y="111.83035714285714"/>
+        </scene>
+        <!--BookDetailsUI-->
+        <scene sceneID="2mJ-Y1-7Y2">
+            <objects>
+                <viewControllerPlaceholder storyboardName="BookDetailsUI" id="4WD-5b-21M" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="cdT-vI-DLu"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wHv-ef-lnh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1307" y="112"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

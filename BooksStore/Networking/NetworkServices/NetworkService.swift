@@ -20,6 +20,10 @@ class NetworkService {
     func fetchSearchResults (searchKeyword:String , completion: @escaping(Result<[BookModel],Error>) -> Void) {
         searchBooksRequest(searchKeyword: searchKeyword, completion: completion)
     }
+    
+    func fetchCategoryData(searchKeyword:String , completion: @escaping(Result<[CategoriesModel],Error>) -> Void){
+        searchBooksRequest(searchKeyword: searchKeyword, completion: completion)
+    }
     //MARK: - Main fuction to handle request
     func fetchData<T: Decodable>(target : TargetType ,method: Method, completion:@escaping (Result<T,Error>) -> Void) {
         let method = Alamofire.HTTPMethod(rawValue: method.rawValue)
