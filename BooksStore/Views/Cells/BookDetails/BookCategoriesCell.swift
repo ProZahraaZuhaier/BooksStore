@@ -26,7 +26,7 @@ class BookCategoriesCell: UITableViewCell {
     func configureCell(with data: BookModel) {
         self.bookInfo = data
         DispatchQueue.main.async {
-            self.categories.text = self.bookInfo?.volumeInfo?.categories?[0] ?? "Unknown Category"
+             self.categories.text = self.bookInfo?.volumeInfo?.categories?[0] ?? "Unknown Category"
           
         }
     }

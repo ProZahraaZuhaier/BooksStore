@@ -18,7 +18,7 @@ class BookPageDetailsViewController: UIViewController {
     var bookInfo: BookModel?
     var bookURL : URL?
     var isDownloaded:Bool = false
-    var downloader = DownloadManager()
+    var downloadManager = DownloadManager()
     var realmViewModel = RealmViewModel()
     //MARK: - View Lifecycle methods
     override func viewDidLoad() {
@@ -27,8 +27,8 @@ class BookPageDetailsViewController: UIViewController {
         //MARK: - Trigger Delegates
         tabelView.delegate = self
         tabelView.dataSource = self
-        downloader.downloadStatusDelegate = self
-        downloader.saveFileDelegate = self
+        downloadManager.downloadStatusDelegate = self
+        downloadManager.saveFileDelegate = self
         //MARK: - Register Cells
         tabelView.register(UINib(nibName: "BookPosterCell", bundle: nil), forCellReuseIdentifier: "BookPosterCell")
         tabelView.register(UINib(nibName: "BookInfoCell", bundle: nil), forCellReuseIdentifier: "BookInfoCell")
@@ -56,11 +56,11 @@ class BookPageDetailsViewController: UIViewController {
     @IBAction func downloadButtonTapped(_ sender: Any) {
         
         if downloadButton.titleLabel?.text == "Download"{
-            //let bookURL = self.bookInfo?.volumeInfo?.previewLink
+            let bookURL = self.bookInfo?.volumeInfo?.previewLink
             self.checkDownloadButtonState(state: false)
-            
-            // test url
-            self.downloader.downloadBook(from: "https://filesamples.com/samples/ebook/epub/Sway.epub")
+        
+            // Download file
+            self.downloadManager.downloadBook(from: bookURL!)
         }
         else {
             // open the book from the Realm DB

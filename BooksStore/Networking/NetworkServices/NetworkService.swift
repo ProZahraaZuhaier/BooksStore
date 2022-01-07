@@ -12,7 +12,7 @@ class NetworkService {
     
     static let shared = NetworkService()
     private init(){}
-    
+
     func fetchBooks(route: TargetType , method: Method ,completion: @escaping(Result<[BookModel],Error>) -> Void){
         fetchData(target: route, method: method , completion: completion)
     }
@@ -24,11 +24,12 @@ class NetworkService {
     func fetchCategoryData(searchKeyword:String , completion: @escaping(Result<[CategoriesModel],Error>) -> Void){
         searchBooksRequest(searchKeyword: searchKeyword, completion: completion)
     }
+    
     //MARK: - Main fuction to handle request
     func fetchData<T: Decodable>(target : TargetType ,method: Method, completion:@escaping (Result<T,Error>) -> Void) {
         let method = Alamofire.HTTPMethod(rawValue: method.rawValue)
         
-        AF.request(TargetType.baseURL + target.path , method: method)
+        AF.request(TargetType.mockApi + target.path , method: method)
             .responseJSON { response in
                 guard let statusCode = response.response?.statusCode else {
                     //ADD Custom Error
@@ -39,6 +40,7 @@ class NetworkService {
                     //Successful request
                     var result : Result<Data , Error>?
                     if let data = response.data {
+                        print(response)
                         result = .success(data)
                     }
                     
@@ -62,7 +64,6 @@ class NetworkService {
     //MARK: - Handle Response Method
     private func handleResponse<T: Decodable>(result: Result<Data , Error>? ,
                                               completion: (Result<T , Error>) -> Void) {
-        
         guard let result = result else {
             completion(.failure(ErrorHandler.unknownError))
             return
@@ -72,13 +73,15 @@ class NetworkService {
             
         case .success(let data):
             let decoder = JSONDecoder()
-            guard let response = try? decoder.decode(ApiResponse<T>.self, from: data) else {
+            
+            guard let response = try? decoder.decode([ApiResponse<T>].self, from: data) else {
+                
                 completion(.failure(ErrorHandler.errorDecoding))
                 return
             }
             
-            if let decodedData = response.items {
-                completion(.success(decodedData))
+            if let decodedData = response.first {
+                completion(.success(decodedData.items ?? [] as! T))
             }
             else{
                 completion(.failure(ErrorHandler.errorDecoding))
@@ -112,7 +115,7 @@ extension NetworkService {
                     
                     // handle response
                     DispatchQueue.main.async {
-                        self.handleResponse(result: result, completion: completion)
+                        self.handleSearchResponse(result: result, completion: completion)
                     }
                     
                 }
@@ -121,5 +124,36 @@ extension NetworkService {
                     completion(.failure(ErrorHandler.unknownError))
                 }
             }
+    }
+   
+    // function to handle search APIs response
+    private func handleSearchResponse<T: Decodable>(result: Result<Data , Error>? ,
+                                              completion: (Result<T , Error>) -> Void) {
+        guard let result = result else {
+            completion(.failure(ErrorHandler.unknownError))
+            return
+        }
+        
+        switch result {
+            
+        case .success(let data):
+            let decoder = JSONDecoder()
+            
+            guard let response = try? decoder.decode(ApiResponse<T>.self, from: data) else {
+                
+                completion(.failure(ErrorHandler.errorDecoding))
+                return
+            }
+            
+            if let decodedData = response.items {
+                completion(.success(decodedData))
+            }
+            else{
+                completion(.failure(ErrorHandler.errorDecoding))
+            }
+            
+        case .failure(let error):
+            completion(.failure(error))
+        }
     }
 }

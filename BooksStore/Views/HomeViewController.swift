@@ -8,7 +8,6 @@
 import UIKit
 import RealmSwift
 
-
 class HomeViewController: UIViewController {
     
     //MARK: - Set Properties and Variables
@@ -55,20 +54,20 @@ class HomeViewController: UIViewController {
         self.showIndicatorView()
         switch sender.selectedSegmentIndex {
             
-        case 0:
-            self.endpoint = .FictionBooksApi
-            
-        case 1:
-            self.endpoint = .RomanceBooksApi
-            
-        case 2:
-            self.endpoint = .Drama_BooksApi
-            
-        case 3:
-            self.endpoint = .CrimeBooksApi
+//        case 0:
+//            self.endpoint = .FictionBooksApi
+//
+//        case 1:
+//            self.endpoint = .RomanceBooksApi
+//
+//        case 2:
+//            self.endpoint = .Drama_BooksApi
+//
+//        case 3:
+//            self.endpoint = .CrimeBooksApi
             
         default:
-            self.endpoint = .FictionBooksApi
+            self.endpoint = .general
         }
         dataModel.fetchData(for: self.endpoint!)
     }
@@ -116,7 +115,6 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource, UICo
         performSegue(withIdentifier: "goToDetailVC", sender: self)
     }
 }
-
 //MARK: - implement Protocol Books API Methods
 extension HomeViewController : APIResponseProtocol {
     func booksRetrieved(data: [BookModel], for endpoint: TargetType) {
@@ -127,5 +125,3 @@ extension HomeViewController : APIResponseProtocol {
         self.hideIndicatorView()
     }
 }
-
-

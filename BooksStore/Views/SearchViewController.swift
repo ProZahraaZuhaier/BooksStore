@@ -16,7 +16,6 @@ class SearchViewController: UIViewController {
     var BooksInfo = [BookModel]()
     var dataModel = BooksAPIDataModel()
     
-    
     //MARK: - View lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +47,6 @@ class SearchViewController: UIViewController {
         detailVC.bookInfo = bookInfo
     }
 }
-
 //MARK: - Methods
 extension SearchViewController{
     func showIndicatorView(){

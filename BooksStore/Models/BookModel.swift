@@ -6,23 +6,12 @@
 //
 
 import Foundation
-import UIKit
 
 // MARK: - Item
 struct  BookModel : Codable  {
-
     //Book Info
     let volumeInfo: VolumeInfo?
-    let accessInfo: AccessInfo?
- 
     }
-
-// MARK: - AccessInfo
-struct AccessInfo: Codable {
-
-  let webReaderLink: String?
-
-}
 // MARK: - Book Info
 struct VolumeInfo : Codable {
     let id: String?
@@ -39,5 +28,4 @@ struct VolumeInfo : Codable {
 // MARK: - ImageLinks
  struct ImageLinks: Codable {
     let smallThumbnail, thumbnail: String?
-
 }

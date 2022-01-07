@@ -204,7 +204,6 @@
 		496B8E27271C06EB00871DB9 /* BooksStore */ = {
 			isa = PBXGroup;
 			children = (
-				49523C8F2774EF2900DF1E5A /* CategoriesData.json */,
 				497A8EFD27594ED4007CFC4A /* BooksStore.entitlements */,
 				496B8E28271C06EB00871DB9 /* AppDelegate.swift */,
 				496B8E2A271C06EB00871DB9 /* SceneDelegate.swift */,
@@ -214,6 +213,7 @@
 				49F70F7C271CC33F00314A99 /* Views */,
 				49D73C25276DE59C00874FD7 /* ViewModel */,
 				4998AF29275AA3030036ECCE /* Helper */,
+				49CA6DF227878F2A004C4A20 /* Local Data */,
 			);
 			path = BooksStore;
 			sourceTree = "<group>";
@@ -313,6 +313,14 @@
 				4998AF3F275AC6DC0036ECCE /* BookDescriptionCell.xib */,
 			);
 			path = BookDetails;
+			sourceTree = "<group>";
+		};
+		49CA6DF227878F2A004C4A20 /* Local Data */ = {
+			isa = PBXGroup;
+			children = (
+				49523C8F2774EF2900DF1E5A /* CategoriesData.json */,
+			);
+			path = "Local Data";
 			sourceTree = "<group>";
 		};
 		49D73C25276DE59C00874FD7 /* ViewModel */ = {
