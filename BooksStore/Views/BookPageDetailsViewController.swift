@@ -61,6 +61,7 @@ class BookPageDetailsViewController: UIViewController {
         
             // Download file
             self.downloadManager.downloadBook(from: bookURL!)
+            
         }
         else {
             // open the book from the Realm DB
