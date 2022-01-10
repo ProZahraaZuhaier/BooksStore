@@ -68,7 +68,7 @@ extension BookCardTableViewCell {
             else {
                 
                 DispatchQueue.main.async {
-                    self.bookCoverImage.image = UIImage(named: "placeholderImage")
+                    self.bookCoverImage.image = UIImage(named: "placeholder")
                 }
                 print(ErrorHandler.invalidURL)
             }
